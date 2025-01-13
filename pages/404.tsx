@@ -1,0 +1,23 @@
+import { Button, Container, Typography } from "@mui/material"
+import Image from 'next/image';
+
+import styles from '../styles/Error.module.scss'
+import { useRouter } from "next/router";
+
+const Custom404: React.FC = () => {
+    const router = useRouter();
+    return (
+        <Container className={styles.gradiente}>
+            <div className={styles.errorPageContainer}>
+                <Typography variant="body1" className={styles.title}>Ops! Não encontramos a página...</Typography>
+                <Typography variant="body1" className={styles.description}>E olha que exploramos o universo procurando por ela! <br></br>
+                    Que tal voltar e tentar novamente?
+                </Typography>
+                <Button onClick={() => router.push('/')} variant="contained" color="primary" className={styles.backButton}>Voltar ao início</Button>
+                <Image src="/illustration_404.svg" alt="Ilustração 404" width={370} height={255} className={styles.illustration}></Image>
+            </div>
+        </Container>
+    )
+}
+
+export default Custom404;
