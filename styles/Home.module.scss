@@ -2,33 +2,32 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #2b6b7b;
-    padding: 0;
-}
-
-.gradiente {
+    padding: 40px 300px;
     background: linear-gradient(to bottom, #004d61, #ffffff);
-    flex: 1
 }
 
 .main {
     display: flex;
+    flex-direction: column;
     align-items: center;
+    text-align: center;
 
     .title {
         font-weight: bold;
         margin-bottom: 20px;
         font-size: 28px;
-        margin-right: 70px;
     }
-    
+
     .illustration {
         max-width: 100%;
         height: auto;
         margin-bottom: 40px;
     }
-}
 
+    .buttons {
+        display: none;
+    }
+}
 
 .sectionFeatures {
     display: flex;
@@ -40,36 +39,101 @@
         color: #000000;
         font-weight: bold;
     }
-    
+
     .features {
-        display: flex;
-        justify-content: space-around;
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
         gap: 20px;
         margin-bottom: 40px;
     }
-    
+
     .featureBox {
         padding: 20px;
-        flex: 1;
-        min-width: 200px;
         display: flex;
         flex-direction: column;
         align-items: center;
         text-align: center;
     }
-    
+
     .featureTitle {
         color: #47a138;
         font-size: 20px;
         font-weight: bold;
         margin-bottom: 10px;
     }
-    
+
     .featureDescription {
         font-size: 16px;
         color: #767676;
     }
 }
 
+@media (min-width: 721px) {
+    .main {
+        flex-direction: row;
+        text-align: left;
 
+        .title {
+            margin-right: 70px;
+        }
+    }
+}
+
+@media (max-width: 720px) {
+    .container {
+        padding: 40px;
+    }
+    .sectionFeatures .features {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 360px) {
+    .container {
+        padding: 20px;
+    }
+
+    .main {
+        .title {
+            font-size: 25px;
+        }
+
+        .illustration {
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            width: 100%;
+            justify-content: center;
+            margin-bottom: 40px;
+    
+            .primaryButton {
+                height: 40px;
+                width: 130px;
+                text-transform: none;
+                background-color: #000000
+            }
+
+            .outlinedButton {
+                height: 40px;
+                width: 130px;
+                text-transform: none;
+                border-color: #000000;
+                color: #000000;
+            }
+        }
+    }
+
+    .sectionFeatures {
+        .features {
+            grid-template-columns: repeat(1, 1fr);
+        }
+
+        .sectionTitle {
+            font-size: 20px !important;
+        }
+    }
+}

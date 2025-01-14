@@ -1,10 +1,11 @@
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import type { AppProps } from "next/app";
-import "../styles/globals.scss";
-import { AuthProvider, useAuth } from "../contexts/authContext";
 import { useRouter } from "next/router";
+
+import { AuthProvider, useAuth } from "../contexts/authContext";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import "../styles/globals.scss";
 
 const theme = createTheme({
     palette: {
