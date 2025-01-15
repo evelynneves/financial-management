@@ -7,6 +7,7 @@ import "../styles/globals.scss";
 import Header from "../components/Header/Header";
 import { AuthProvider, useAuth } from "../contexts/AuthContext";
 import { IAppLayoutProps } from "../interfaces/appLayout";
+import HeaderLogged from "../components/HeaderLogged/HeaderLogged";
 
 const theme = createTheme({
     palette: {
@@ -27,7 +28,7 @@ const AppLayout: React.FC<IAppLayoutProps> = ({ children}) => {
 
     return (
         <>
-            {showHeaderFooter && <Header />}
+            {showHeaderFooter ? <Header /> : <HeaderLogged userName="Evy" />}
             {children}
             {showHeaderFooter && <Footer />}
         </>

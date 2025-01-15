@@ -2,7 +2,7 @@ import { Button, Container, Typography } from "@mui/material"
 import Image from 'next/image';
 import { useRouter } from "next/router";
 
-import styles from '../styles/404.module.scss'
+import styles from '../styles/404.module.scss';
 
 const Custom404: React.FC = () => {
     const router = useRouter();
