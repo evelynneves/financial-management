@@ -1,7 +1,7 @@
 import { Typography } from "@mui/material";
 import Image from 'next/image';
 
-import styles from '../styles/Footer.module.scss';
+import styles from './Footer.module.scss';
 
 const Footer: React.FC = () => {
     return (
@@ -25,11 +25,11 @@ const Footer: React.FC = () => {
                 </div>
                 <div className={styles.logo}>
                     <Typography variant="body1" className={styles.listTitle}>Desenvolvido por Alura</Typography>
-                    <Image src="logo_footer.svg" alt="Bytebank Logo" width={200} height={30}></Image>
+                    <Image src="/images/logo_footer.svg" alt="Bytebank Logo" width={200} height={30}></Image>
                     <div className={styles.socialMedia}>
-                        <a href="#"><Image aria-label="Instagram" src="/instagram_icon.svg" alt="Instagram Icon" width={25} height={25}></Image></a>
-                        <a href="#"><Image aria-label="WhatsApp" src="/whatsapp_icon.svg" alt="Whatsapp Icon" width={25} height={25}></Image></a>
-                        <a href="#"><Image aria-label="Youtube" src="/youtube_icon.svg" alt="Youtube Icon" width={25} height={25}></Image></a>
+                        <a href="#"><Image aria-label="Instagram" src="/images/instagram_icon.svg" alt="Instagram Icon" width={25} height={25}></Image></a>
+                        <a href="#"><Image aria-label="WhatsApp" src="/images/whatsapp_icon.svg" alt="Whatsapp Icon" width={25} height={25}></Image></a>
+                        <a href="#"><Image aria-label="Youtube" src="/images/youtube_icon.svg" alt="Youtube Icon" width={25} height={25}></Image></a>
                     </div>
                 </div>
             </div>

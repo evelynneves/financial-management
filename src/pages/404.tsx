@@ -2,7 +2,7 @@ import { Button, Container, Typography } from "@mui/material"
 import Image from 'next/image';
 import { useRouter } from "next/router";
 
-import styles from '../styles/Error.module.scss'
+import styles from '../styles/404.module.scss'
 
 const Custom404: React.FC = () => {
     const router = useRouter();
@@ -14,7 +14,7 @@ const Custom404: React.FC = () => {
                     Que tal voltar e tentar novamente?
                 </Typography>
                 <Button onClick={() => router.push('/')} variant="contained" color="primary" className={styles.backButton}>Voltar ao início</Button>
-                <Image src="/illustration_404.svg" alt="Ilustração 404" width={370} height={255} className={styles.illustration}></Image>
+                <Image src="/images/illustration_404.svg" alt="Ilustração 404" width={370} height={255} className={styles.illustration}></Image>
             </div>
         </Container>
     )

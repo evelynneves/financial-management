@@ -1,20 +1,10 @@
-import React, { ReactNode } from "react";
+import React from "react";
 import { Modal, Box, Typography, Button, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import Image from "next/image";
+import { IGenericModalProps } from "../interfaces/components";
 
-interface GenericModalProps {
-    open: boolean;
-    handleClose: () => void;
-    title: string;
-    children: ReactNode;
-    illustration: string;
-    buttonText: string;
-    onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-    isFormValid: boolean;
-}
-
-const GenericModal: React.FC<GenericModalProps> = ({
+const GenericModal: React.FC<IGenericModalProps> = ({
     open,
     handleClose,
     title,

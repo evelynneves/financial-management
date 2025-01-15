@@ -3,8 +3,8 @@ import Image from "next/image";
 import { useState } from "react";
 
 import styles from "../styles/Home.module.scss";
-import CreateAccountModal from "@/components/CreateAccountModal";
-import LoginModal from "@/components/LoginModal";
+import CreateAccountModal from "@/src/components/CreateAccountModal";
+import LoginModal from "@/src/components/LoginModal";
 
 const HomePage: React.FC = () => {
     const [createAccountModalOpen, setCreateAccountModalOpen] = useState(false);
@@ -26,7 +26,7 @@ const HomePage: React.FC = () => {
                     Crie sua conta com a gente!
                 </Typography>
                 <Image
-                    src="/illustration_banner.svg"
+                    src="/images/illustration_banner.svg"
                     alt="Gráfico de barras e pessoa segurando dinheiro"
                     width={600}
                     height={400}
@@ -58,7 +58,7 @@ const HomePage: React.FC = () => {
                 <div className={styles.features}>
                     <Box className={styles.featureBox}>
                         <Image
-                            src="/gift_icon.svg"
+                            src="/images/gift_icon.svg"
                             alt="Ícone de Presente"
                             width={73}
                             height={56}
@@ -78,7 +78,7 @@ const HomePage: React.FC = () => {
 
                     <Box className={styles.featureBox}>
                         <Image
-                            src="/withdraw_icon.svg"
+                            src="/images/withdraw_icon.svg"
                             alt="Ícone de Saque"
                             width={73}
                             height={56}
@@ -98,7 +98,7 @@ const HomePage: React.FC = () => {
 
                     <Box className={styles.featureBox}>
                         <Image
-                            src="/points_icon.svg"
+                            src="images//points_icon.svg"
                             alt="Ícone de Pontos"
                             width={73}
                             height={56}
@@ -118,7 +118,7 @@ const HomePage: React.FC = () => {
 
                     <Box className={styles.featureBox}>
                         <Image
-                            src="/devices_icon.svg"
+                            src="/images/devices_icon.svg"
                             alt="Ícone de Dispositivos"
                             width={73}
                             height={56}

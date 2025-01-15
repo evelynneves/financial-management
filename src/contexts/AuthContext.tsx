@@ -1,22 +1,13 @@
-import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { IAuthContextType, IAuthProviderProps } from "../interfaces/auth";
 
-interface AuthContextType {
-    isLoggedIn: boolean;
-    login: () => void;
-    logout: () => void;
-}
-
-interface AuthProviderProps {
-    children: ReactNode;
-}
-
-const AuthContext = createContext<AuthContextType>({
+const AuthContext = createContext<IAuthContextType>({
     isLoggedIn: false,
     login: () => {},
     logout: () => {},
 });
 
-export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
+export const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const login = () => setIsLoggedIn(true);

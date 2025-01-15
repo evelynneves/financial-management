@@ -2,10 +2,11 @@ import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 
-import { AuthProvider, useAuth } from "../contexts/authContext";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Footer from "@/src/components/Footer/Footer";
 import "../styles/globals.scss";
+import Header from "../components/Header/Header";
+import { AuthProvider, useAuth } from "../contexts/AuthContext";
+import { IAppLayoutProps } from "../interfaces/appLayout";
 
 const theme = createTheme({
     palette: {
@@ -19,11 +20,7 @@ const theme = createTheme({
     },
 });
 
-interface AppLayoutProps {
-    children: React.ReactNode;
-};
-
-const AppLayout: React.FC<AppLayoutProps> = ({ children}) => {
+const AppLayout: React.FC<IAppLayoutProps> = ({ children}) => {
     const { isLoggedIn } = useAuth();
     const router = useRouter();
     const showHeaderFooter = !isLoggedIn || router.pathname === '/' || router.pathname === '/404';
