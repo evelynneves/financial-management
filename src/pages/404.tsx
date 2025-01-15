@@ -7,7 +7,7 @@ import styles from '../styles/404.module.scss';
 const Custom404: React.FC = () => {
     const router = useRouter();
     return (
-        <Container className={styles.gradiente}>
+        <Container className={styles.gradiente} maxWidth={false}>
             <div className={styles.errorPageContainer}>
                 <Typography variant="body1" className={styles.title}>Ops! Não encontramos a página...</Typography>
                 <Typography variant="body1" className={styles.description}>E olha que exploramos o universo procurando por ela! <br></br>

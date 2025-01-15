@@ -1,0 +1,43 @@
+.listItem {
+    display: flex;
+    align-items: center;
+    padding-bottom: 8px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+    flex-direction: column;
+
+    &:hover {
+        background-color: #e0e0e0;
+    }
+
+    .listItemContent {
+        display: flex;
+        align-items: center;
+        width: 100%;
+
+        & > * {
+            color: #000000;
+        }
+    }
+
+    .underline {
+        width: 100%;
+        height: 2px;
+        background-color: #000000;
+        margin-top: 8px;
+    }
+}
+
+.listItem:last-child .underline {
+    display: none;
+}
+
+.itemSelected {
+    .listItemContent > * {
+        color: #47a138;
+    }
+
+    .underline {
+        background-color: #47a138;
+    }
+}

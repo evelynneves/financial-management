@@ -1,6 +1,8 @@
 .container {
     width: 100%;
-    padding: 20px;
+    min-height: calc(100vh - 64px);
+    padding: 20px 300px;
+    background-color: #e4ede3;
 }
 
 .gridContainer {
@@ -9,18 +11,10 @@
     gap: 20px;
 }
 
-.sidebarLeft {
-    background-color: #f5f5f5;
-    padding: 16px;
-    border-radius: 8px;
-}
-
 .mainContent {
     display: grid;
     grid-template-rows: auto auto;
     gap: 20px;
-    background-color: #f5f5f5;
-    padding: 16px;
     border-radius: 8px;
 }
 
@@ -34,33 +28,37 @@
     display: grid;
     grid-template-rows: auto auto 1fr;
     grid-template-columns: 1fr 1fr;
+
+    .topSectionRow1 {
+        grid-column: span 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    
+    .topSectionRow2 {
+        display: flex;
+        flex-direction: column;
+        grid-column: 2;
+        align-items: flex-start;
+        width: fit-content;
+    }
+    
+    .topSectionRow3 {
+        grid-column: span 2;
+    }
 }
 
-.topSectionRow1 {
-    grid-column: span 2;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-}
-
-.topSectionRow2 {
-    display: flex;
-    flex-direction: column;
-    grid-column: 2;
-    align-items: flex-end;
-    text-align: right;
-}
-
-.topSectionRow3 {
-    grid-column: span 2;
+.bottomSection {
+    width: 690px;
+    min-height: 478px;
+    padding: 30px;
+    background-color: #cbcbcb;
+    border-radius: 8px;
 }
 
 .greeting {
     margin-bottom: 8px;
-}
-
-.date {
-    margin-bottom: 16px;
 }
 
 .balanceContainer {
@@ -83,7 +81,7 @@
     height: 2px;
     background-color: #ffa500;
     margin-bottom: 8px;
-    align-self: flex-end; /* Adiciona uma linha à direita */
+    align-self: flex-end;
 }
 
 .accountType {
@@ -96,67 +94,4 @@
     font-size: 2.5rem;
     font-weight: bold;
     text-align: right;
-}
-
-.bottomSection {
-    width: 690px;
-    height: 478px;
-    padding: 30px;
-    background-color: #CBCBCB;
-
-    .title {
-        font-weight: 700;
-    }
-}
-
-.servicesGrid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-.serviceItem {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 30px;
-    gap: 20px;
-    background-color: #f2f2f2;
-    border-radius: 8px;
-    cursor: pointer;
-
-    &:hover { 
-        background-color: #e0e0e0;
-        transform: translateY(-5px);
-    }
-
-    p {
-        font-size: 16px;
-        font-weight: 700;
-    }
-}
-
-.serviceIcon {
-    font-size: 40px;
-    margin-bottom: 8px;
-}
-
-.servicesList {
-    list-style-type: none;
-    padding: 0;
-}
-
-.servicesList li {
-    margin-bottom: 8px;
-    font-weight: bold;
-}
-
-.sidebarRight {
-    background-color: #f5f5f5;
-    padding: 16px;
-    border-radius: 8px;
-}
-
-.accountSummary {
-    padding: 16px;
 }

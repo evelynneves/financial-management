@@ -12,3 +12,21 @@ export interface IGenericModalProps {
 }
 
 export type IHomeModalProps = Pick<IGenericModalProps, "open" | "handleClose">;
+
+export interface ISidebarProps {
+    children: ReactNode;
+    title?: string;
+}
+
+export interface ITransactionItemProps {
+    month: string;
+    date: string;
+    type: string;
+    amount: string;
+    isNegative: boolean;
+}
+
+export interface IMenuListProps {
+    selectedMenuItem: string;
+    handleMenuItemClick: (menuItem: string) => void;
+}
