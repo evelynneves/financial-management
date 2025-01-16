@@ -8,6 +8,7 @@ import Header from "../components/Header/Header";
 import { AuthProvider, useAuth } from "../contexts/AuthContext";
 import { IAppLayoutProps } from "../interfaces/appLayout";
 import HeaderLogged from "../components/HeaderLogged/HeaderLogged";
+import { MenuProvider } from "../contexts/MenuContext";
 
 const theme = createTheme({
     palette: {
@@ -38,12 +39,14 @@ const AppLayout: React.FC<IAppLayoutProps> = ({ children}) => {
 export default function App({ Component, pageProps }: AppProps) {
     return (
         <AuthProvider>
-            <ThemeProvider theme={theme}>
-                <CssBaseline />
-                <AppLayout>
-                    <Component {...pageProps} />
-                </AppLayout>
-            </ThemeProvider>
+            <MenuProvider>
+                <ThemeProvider theme={theme}>
+                    <CssBaseline />
+                    <AppLayout>
+                        <Component {...pageProps} />
+                    </AppLayout>
+                </ThemeProvider>
+            </MenuProvider>
         </AuthProvider>
     );
 }

@@ -10,17 +10,14 @@ import OutrosServicos from "../components/OtherServices/OtherServices";
 import TransactionItem from "../components/TransactionalItem/TransactionalItem";
 import MenuList from "../components/MenuList/MenuList";
 import Sidebar from "../components/Sidebar/Sidebar";
+import { useMenu } from "../contexts/MenuContext";
 
 const Services = () => {
-    const [selectedMenuItem, setSelectedMenuItem] = useState("Início");
+    const { selectedMenuItem, setSelectedMenuItem } = useMenu();
     const [showBalance, setShowBalance] = useState(true);
 
     const toggleBalanceVisibility = () => {
         setShowBalance(!showBalance);
-    };
-
-    const handleMenuItemClick = (menuItem: string) => {
-        setSelectedMenuItem(menuItem);
     };
 
     const renderContent = () => {
@@ -46,7 +43,7 @@ const Services = () => {
             <Box className={styles.listItemContainer}>
                 <MenuList
                     selectedMenuItem={selectedMenuItem}
-                    handleMenuItemClick={handleMenuItemClick}
+                    handleMenuItemClick={setSelectedMenuItem}
                 />
             </Box>
             <Box className={styles.gridContainer}>
@@ -54,7 +51,7 @@ const Services = () => {
                     <Sidebar>
                         <MenuList
                             selectedMenuItem={selectedMenuItem}
-                            handleMenuItemClick={handleMenuItemClick}
+                            handleMenuItemClick={setSelectedMenuItem}
                         />
                     </Sidebar>
                 </div>

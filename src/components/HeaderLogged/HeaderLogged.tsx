@@ -13,14 +13,15 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import styles from "./HeaderLogged.module.scss";
-import { IHeaderLoggedProps } from "@/src/interfaces/components";
 import MenuList from "../../components/MenuList/MenuList";
+import { useMenu } from "../../contexts/MenuContext";
 
-const HeaderLogged: React.FC<IHeaderLoggedProps> = ({ userName }) => {
+const HeaderLogged: React.FC<{ userName: string }> = ({ userName }) => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const [drawerOpen, setDrawerOpen] = useState(false);
     const isMediumScreen = useMediaQuery('(min-width: 361px) and (max-width: 719px)');
     const isExtraSmallScreen = useMediaQuery('(max-width: 360px)');
+    const { selectedMenuItem, setSelectedMenuItem } = useMenu();
 
     const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
@@ -34,9 +35,9 @@ const HeaderLogged: React.FC<IHeaderLoggedProps> = ({ userName }) => {
         setDrawerOpen(open);
     };
 
-    const [selectedMenuItem, setSelectedMenuItem] = useState("Início");
     const handleMenuItemClick = (menuItem: string) => {
         setSelectedMenuItem(menuItem);
+        setDrawerOpen(false); // Fecha o drawer após a seleção
     };
 
     return (

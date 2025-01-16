@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useContext, useEffect, useState, useMemo } from "react";
 import { IAuthContextType, IAuthProviderProps } from "../interfaces/auth";
 
 const AuthContext = createContext<IAuthContextType>({
@@ -17,10 +17,13 @@ export const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
         //teste
     }, []);
 
-    return (
-        <AuthContext.Provider value={{ isLoggedIn, login, logout}}>{children}</AuthContext.Provider>
-    );
+    const value = useMemo(() => ({ isLoggedIn, login, logout }), [isLoggedIn]);
 
+    return (
+        <AuthContext.Provider value={value}>
+            {children}
+        </AuthContext.Provider>
+    );
 };
 
 export const useAuth = () => useContext(AuthContext);
