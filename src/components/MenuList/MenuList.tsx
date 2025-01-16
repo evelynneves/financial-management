@@ -6,7 +6,7 @@ import { IMenuListProps } from "@/src/interfaces/components";
 
 const MenuList: React.FC<IMenuListProps> = ({ selectedMenuItem, handleMenuItemClick }) => {
     return (
-        <List>
+        <List className={styles.list}>
             {["Início", "Transferências", "Investimentos", "Outros serviços"].map((item) => (
                 <ListItem
                     key={item}
@@ -15,7 +15,7 @@ const MenuList: React.FC<IMenuListProps> = ({ selectedMenuItem, handleMenuItemCl
                     onClick={() => handleMenuItemClick(item)}
                 >
                     <div className={styles.listItemContent}>
-                        <ListItemIcon>
+                        <ListItemIcon className={styles.listItemIcon}>
                             {item === "Início" && <Home />}
                             {item === "Transferências" && <TransferWithinAStation />}
                             {item === "Investimentos" && <TrendingUp />}

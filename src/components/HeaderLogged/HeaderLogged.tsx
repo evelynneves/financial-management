@@ -7,13 +7,22 @@ import {
     Menu,
     MenuItem,
     Box,
+    Drawer,
+    useMediaQuery,
 } from "@mui/material";
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 import styles from "./HeaderLogged.module.scss";
+import { IHeaderLoggedProps } from "@/src/interfaces/components";
+import MenuList from "../../components/MenuList/MenuList";
 
-const HeaderLogged = ({ userName }) => {
-    const [anchorEl, setAnchorEl] = useState(null);
+const HeaderLogged: React.FC<IHeaderLoggedProps> = ({ userName }) => {
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+    const [drawerOpen, setDrawerOpen] = useState(false);
+    const isMediumScreen = useMediaQuery('(min-width: 361px) and (max-width: 719px)');
+    const isExtraSmallScreen = useMediaQuery('(max-width: 360px)');
 
-    const handleMenu = (event) => {
+    const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
 
@@ -21,13 +30,27 @@ const HeaderLogged = ({ userName }) => {
         setAnchorEl(null);
     };
 
+    const toggleDrawer = (open: boolean) => () => {
+        setDrawerOpen(open);
+    };
+
+    const [selectedMenuItem, setSelectedMenuItem] = useState("Início");
+    const handleMenuItemClick = (menuItem: string) => {
+        setSelectedMenuItem(menuItem);
+    };
+
     return (
         <AppBar position="static">
             <Toolbar className={styles.toolbar}>
+                {(isMediumScreen || isExtraSmallScreen) ? (
+                    <Box sx={{ display: 'block', order: -1 }}>
+                        <IconButton onClick={toggleDrawer(true)} edge="start" style={{ color: "#FF5031" }}>
+                            <MenuIcon />
+                        </IconButton>
+                    </Box>
+                ) : null}
                 <Box className={styles.rightAligned}>
-                    <Typography variant="h6" className={styles.userName}>
-                        {userName}
-                    </Typography>
+                    <Typography variant="h6" className={styles.userName}>{userName}</Typography>
                     <IconButton
                         edge="end"
                         aria-label="account of current user"
@@ -63,6 +86,14 @@ const HeaderLogged = ({ userName }) => {
                     <MenuItem onClick={handleClose}>Sair</MenuItem>
                 </Menu>
             </Toolbar>
+            <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
+                <Box sx={{ textAlign: 'right', padding: 2, backgroundColor: '#004d61' }}>
+                    <IconButton onClick={toggleDrawer(false)} style={{ color: '#47a138' }}>
+                        <CloseIcon />
+                    </IconButton>
+                </Box>
+                <MenuList selectedMenuItem={selectedMenuItem} handleMenuItemClick={handleMenuItemClick} />
+            </Drawer>
         </AppBar>
     );
 };

@@ -1,10 +1,10 @@
 .listItem {
     display: flex;
     align-items: center;
+    flex-direction: column;
     padding-bottom: 8px;
     transition: background-color 0.3s ease, transform 0.3s ease;
     cursor: pointer;
-    flex-direction: column;
 
     &:hover {
         background-color: #e0e0e0;
@@ -39,5 +39,45 @@
 
     .underline {
         background-color: #47a138;
+    }
+}
+
+@media (min-width: 361px) and (max-width: 720px) {
+    .list {
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
+    }
+
+    .listItemContent {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .listItemIcon {
+        display: none;
+    }
+
+    .underline {
+        display: none;
+    }
+
+    .itemSelected {
+        .underline {
+            display: flex;
+        }
+    }
+
+    .listItem:last-child.itemSelected .underline {
+        display: flex;
+        background-color: #47a138;
+    }
+}
+
+@media (max-width: 360px) {
+    .listItemIcon {
+        min-width: 35px;
     }
 }

@@ -10,15 +10,28 @@
 .rightAligned {
     display: flex;
     align-items: center;
-    gap: 16px;
-}
-
-.userName {
-    margin-right: 16px;
+    gap: 10px;
 }
 
 .avatarImg {
     width: 40px;
     height: 40px;
     border-radius: 50%;
+}
+
+@media (max-width: 720px) {
+    .toolbar {
+        padding: 0 40px;
+    }
+}
+
+@media (max-width: 360px) {
+    .toolbar {
+        padding: 0 20px;
+        justify-content: space-between;
+    }
+
+    .userName {
+        display: none;
+    }
 }

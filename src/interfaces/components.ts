@@ -13,6 +13,10 @@ export interface IGenericModalProps {
 
 export type IHomeModalProps = Pick<IGenericModalProps, "open" | "handleClose">;
 
+export interface IHeaderLoggedProps {
+    userName: string;
+}
+
 export interface ISidebarProps {
     children: ReactNode;
     title?: string;

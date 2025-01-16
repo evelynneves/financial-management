@@ -43,13 +43,21 @@ const Services = () => {
 
     return (
         <Container className={styles.container} maxWidth={false}>
+            <Box className={styles.listItemContainer}>
+                <MenuList
+                    selectedMenuItem={selectedMenuItem}
+                    handleMenuItemClick={handleMenuItemClick}
+                />
+            </Box>
             <Box className={styles.gridContainer}>
-                <Sidebar>
-                    <MenuList
-                        selectedMenuItem={selectedMenuItem}
-                        handleMenuItemClick={handleMenuItemClick}
-                    />
-                </Sidebar>
+                <div className={styles.leftSideBar}>
+                    <Sidebar>
+                        <MenuList
+                            selectedMenuItem={selectedMenuItem}
+                            handleMenuItemClick={handleMenuItemClick}
+                        />
+                    </Sidebar>
+                </div>
                 <Box className={styles.mainContent}>
                     <Box className={styles.topSection}>
                         <Box className={styles.topSectionRow1}>
