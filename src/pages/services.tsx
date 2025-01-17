@@ -6,11 +6,11 @@ import { formatDate } from "../utils/formatDate";
 import styles from "../styles/services.module.scss";
 import Transferencias from "../components/Transfers/Transfer";
 import Investments from "../components/Investments/Investments";
-import OutrosServicos from "../components/OtherServices/OtherServices";
 import TransactionItem from "../components/TransactionalItem/TransactionalItem";
 import MenuList from "../components/MenuList/MenuList";
 import Sidebar from "../components/Sidebar/Sidebar";
 import { useMenu } from "../contexts/MenuContext";
+import ServicesAvailable from "../components/ServicesAvailable/ServicesAvailable";
 
 const Services = () => {
     const { selectedMenuItem, setSelectedMenuItem } = useMenu();
@@ -23,13 +23,13 @@ const Services = () => {
     const renderContent = () => {
         switch (selectedMenuItem) {
             case "Início":
-                return "";
+                return null;
             case "Transferências":
                 return <Transferencias />;
             case "Investimentos":
                 return <Investments />;
             case "Outros serviços":
-                return <OutrosServicos />;
+                return <ServicesAvailable />;
             default:
                 return null;
         }

@@ -18,6 +18,10 @@
     border-radius: 8px;
 }
 
+.leftSideBar {
+    display: flex;
+}
+
 .topSection {
     width: 690px;
     height: 400px;
@@ -143,10 +147,6 @@
     }
 
     .listItemContainer {
-        display: none;
-    }
-
-    .leftSideBar {
         display: none;
     }
 

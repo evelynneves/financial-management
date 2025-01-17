@@ -1,8 +1,8 @@
 import React from "react";
 import { Typography, Box } from "@mui/material";
-import styles from './OtherServices.module.scss';
+import styles from './ServicesAvailable.module.scss';
 
-const OutrosServicos = () => {
+const ServicesAvailable = () => {
     return (
         <Box>
             <Typography variant="h6" gutterBottom className={styles.servicesTitle}>
@@ -38,4 +38,4 @@ const OutrosServicos = () => {
     );
 };
 
-export default OutrosServicos;
+export default ServicesAvailable;
