@@ -37,7 +37,7 @@ const HeaderLogged: React.FC<{ userName: string }> = ({ userName }) => {
 
     const handleMenuItemClick = (menuItem: string) => {
         setSelectedMenuItem(menuItem);
-        setDrawerOpen(false); // Fecha o drawer após a seleção
+        setDrawerOpen(false);
     };
 
     return (

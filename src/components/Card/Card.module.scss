@@ -1,0 +1,90 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    padding: 20px 0;
+
+    .card {
+        width: 327px;
+        height: 164px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+        border-radius: 6px;
+        background-color: #004d61;
+        color: #ffffff;
+        font-family: "Montserrat", sans-serif;
+        background-image: url("/images/card_illustration.svg");
+        background-repeat: no-repeat;
+        background-position: top right;
+        background-size: auto 100%;
+
+        .cardInfo {
+            font-size: 16px;
+        }
+
+        .userInfo {
+            font-size: 12px;
+        }
+    }
+
+    .virtualCard {
+        background-color: #8b8b8b;
+    }
+
+    .cardActions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+
+        button {
+            width: 250px;
+            height: 48px;
+            text-transform: none;
+            font-size: 16px;
+        }
+
+        .primaryButton {
+            background-color: #ff5031;
+        }
+
+        .outlinedButton {
+            border-color: #c56f6f;
+            color: #c56f6f;
+        }
+
+        p {
+            color: #2f2e41;
+        }
+    }
+}
+
+@media (max-width: 720px) {
+    .container {
+        gap: 10px;
+    }
+}
+
+@media (max-width: 360px) {
+    .container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+
+        .card {
+            width: 100%;
+        }
+    }
+
+    .cardActions {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+
+        button {
+            width: 100%;
+        }
+    }
+}

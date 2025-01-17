@@ -1,26 +1,36 @@
-import React, { useState } from "react";
-import { Container, Typography, Box, IconButton } from "@mui/material";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import { formatDate } from "../utils/formatDate";
-import styles from "../styles/services.module.scss";
-import Transferencias from "../components/Transfers/Transfer";
-import Investments from "../components/Investments/Investments";
-import TransactionItem from "../components/TransactionalItem/TransactionalItem";
-import MenuList from "../components/MenuList/MenuList";
-import Sidebar from "../components/Sidebar/Sidebar";
-import { useMenu } from "../contexts/MenuContext";
-import ServicesAvailable from "../components/ServicesAvailable/ServicesAvailable";
+import React, { useState } from 'react';
+import { Container, Typography, Box, IconButton } from '@mui/material';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { formatDate } from '../utils/formatDate';
+import styles from '../styles/services.module.scss';
+import Transferencias from '../components/Transfers/Transfer';
+import Investments from '../components/Investments/Investments';
+import TransactionItem from '../components/TransactionalItem/TransactionalItem';
+import MenuList from '../components/MenuList/MenuList';
+import Sidebar from '../components/Sidebar/Sidebar';
+import { useMenu } from '../contexts/MenuContext';
+import ServicesAvailable from '../components/ServicesAvailable/ServicesAvailable';
+import ManageCards from '../components/ManageCards/ManageCards';
 
 const Services = () => {
     const { selectedMenuItem, setSelectedMenuItem } = useMenu();
     const [showBalance, setShowBalance] = useState(true);
+    const [showCards, setShowCards] = useState(false);
 
     const toggleBalanceVisibility = () => {
         setShowBalance(!showBalance);
     };
 
+    const handleCardClick = () => {
+        setShowCards(true);
+    };
+
     const renderContent = () => {
+        if (showCards) {
+            return <ManageCards />;
+        }
+
         switch (selectedMenuItem) {
             case "Início":
                 return null;
@@ -29,7 +39,7 @@ const Services = () => {
             case "Investimentos":
                 return <Investments />;
             case "Outros serviços":
-                return <ServicesAvailable />;
+                return <ServicesAvailable onCardClick={handleCardClick} />;
             default:
                 return null;
         }
