@@ -4,8 +4,8 @@ import { Typography } from "@mui/material";
 
 const ManageCards = () => {
     return (
-        <div className={styles.container}>
-            <h1>Meus cartões</h1>
+        <div className={styles.manageCardsContainer}>
+            <h1 className={styles.title}>Meus cartões</h1>
             <Typography variant="body1" className={styles.subtitle}>Cartão físico</Typography>
             <div className={styles.cards}>
                 <Card

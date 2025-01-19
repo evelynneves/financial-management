@@ -1,0 +1,132 @@
+.investmentsContainer {
+    font-family: "Montserrat", sans-serif;
+
+    .title {
+        font-size: 25px;
+        margin-bottom: 25px;
+    }
+
+    .total {
+        font-size: 25px;
+        color: #004d61;
+        margin-bottom: 20px;
+    }
+
+    .cardsContainer {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+    .card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        height: 95px;
+        background-color: #004d61;
+        color: #ffffff;
+        padding: 0 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+        .cardTitle {
+            color: #dadada;
+            font-size: 16px;
+        }
+
+        .cardAmount {
+            font-size: 20px;
+            text-align: center;
+        }
+    }
+
+    .statistics {
+        color: #000000;
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .statisticsCard {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        padding: 20px;
+        background-color: #004d61;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .chartLegendContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .chart {
+        max-width: 200px;
+    }
+
+    .legend {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        p {
+            color: #ffffff;
+            font-size: 16px;
+        }
+    }
+
+    .blue {
+        color: #2567f9;
+    }
+
+    .purple {
+        color: #8f3cff;
+    }
+
+    .pink {
+        color: #ff3c82;
+    }
+
+    .orange {
+        color: #f1823d;
+    }
+}
+
+@media (max-width: 720px) {
+    .cardsContainer {
+        grid-template-columns: 1fr;
+    }
+
+    .statisticsCard {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 360px) {
+    .investmentsContainer {
+        .title {
+            text-align: center;
+        }
+    
+        .total {
+            text-align: center;
+        }
+
+        .statistics {
+            text-align: center;
+        }
+
+        .cardsContainer {
+            grid-template-columns: 1fr;
+            gap: 10px;
+        }
+
+        .chartLegendContainer {
+            flex-direction: column;
+        }
+    }
+}
