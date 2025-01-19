@@ -46,3 +46,12 @@ export interface ITransactionalFormProps {
     handleAmountChange: (event: ChangeEvent<HTMLInputElement>) => void;
     handleSubmit: () => void;
 }
+
+export interface IEditTransactionModalProps {
+    open: boolean;
+    onClose: () => void;
+    onSave: (type: string, amount: string) => void;
+    initialType: string;
+    initialAmount: string;
+}
+

@@ -1,4 +1,8 @@
 .transactionalFormContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    
     .inputWrapper {
         position: relative;
         margin-bottom: 16px;

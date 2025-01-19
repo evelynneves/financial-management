@@ -6,9 +6,13 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import styles from './TransactionalItem.module.scss';
 import { ITransactionItemWithActionsProps } from "@/src/interfaces/components";
 import ConfirmationModal from "../ConfirmationModal/ConfirmatinModa";
+import EditTransactionModal from "../EditTransactionalModal/EditTransactionalModal";
 
 const TransactionItem: React.FC<ITransactionItemWithActionsProps> = ({ month, date, type, amount, isNegative, onDelete }) => {
     const [open, setOpen] = useState(false);
+    const [editOpen, setEditOpen] = useState(false);
+    const [transactionType, setTransactionType] = useState('');
+    const [transactionAmount, setTransactionAmount] = useState('');
 
     const handleOpen = () => {
         setOpen(true);
@@ -21,6 +25,38 @@ const TransactionItem: React.FC<ITransactionItemWithActionsProps> = ({ month, da
     const handleConfirm = () => {
         onDelete();
         handleClose();
+    }
+
+    const handleEditOpen = () => {
+        const formattedType = type.toLowerCase() === 'depósito' || type.toLowerCase() === 'deposito' ? 'deposito' : 'transferencia';
+        const formattedAmount = amount.includes('R$') ? amount : `R$ ${amount}`;
+
+        setTransactionType(formattedType);
+        setTransactionAmount(formattedAmount);
+        setEditOpen(true);
+    };
+
+    const handleEditClose = () => {
+        setEditOpen(false);
+    };
+
+    const handleSave = (newType: string, newAmount: string) => {
+        const userDataString = sessionStorage.getItem('userData');
+        if (!userDataString) {
+            console.log('Usuário não encontrado. Por favor, faça o login.');
+            return;
+        }
+
+        const userData = JSON.parse(userDataString);
+        const updatedTransactions = userData.transactions.map(transaction => {
+            if (transaction.date === date && transaction.amount === amount && transaction.type === type) {
+                return { ...transaction, type: newType, amount: newAmount };
+            }
+            return transaction;
+        });
+
+        userData.transactions = updatedTransactions;
+        sessionStorage.setItem('userData', JSON.stringify(userData));
     };
 
     return (
@@ -42,16 +78,23 @@ const TransactionItem: React.FC<ITransactionItemWithActionsProps> = ({ month, da
             <div className={styles.underline}></div>
             <Box className={styles.actionIcons}>
                 <IconButton size="small" onClick={handleOpen}>
-                    <VisibilityIcon className={styles.icon}/>
+                    <VisibilityIcon className={styles.icon} />
                 </IconButton>
-                <IconButton size="small">
-                    <EditIcon className={styles.icon}/>
+                <IconButton size="small" onClick={handleEditOpen}>
+                    <EditIcon className={styles.icon} />
                 </IconButton>
                 <IconButton size="small" onClick={handleOpen}>
-                    <DeleteIcon className={styles.icon}/>
+                    <DeleteIcon className={styles.icon} />
                 </IconButton>
             </Box>
             <ConfirmationModal open={open} onClose={handleClose} onConfirm={handleConfirm} />
+            <EditTransactionModal
+                open={editOpen}
+                onClose={handleEditClose}
+                onSave={handleSave}
+                initialType={transactionType}
+                initialAmount={transactionAmount}
+            />
         </Box>
     );
 };
