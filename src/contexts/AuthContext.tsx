@@ -1,10 +1,20 @@
-import React, { createContext, useContext, useEffect, useState, useMemo } from "react";
-import { IAuthContextType, IAuthProviderProps, IUserData } from "../interfaces/auth";
+import React, {
+    createContext,
+    useContext,
+    useEffect,
+    useState,
+    useMemo,
+} from "react";
+import {
+    IAuthContextType,
+    IAuthProviderProps,
+    IUserData,
+} from "../interfaces/auth";
 
 const AuthContext = createContext<IAuthContextType>({
     isLoggedIn: false,
     user: null,
-    login: (userData: IUserData) => {},
+    login: () => {},
     logout: () => {},
 });
 
@@ -13,27 +23,33 @@ export const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
     const [user, setUser] = useState<IUserData | null>(null);
 
     const login = (userData: IUserData) => {
-        sessionStorage.setItem('userData', JSON.stringify(userData));
+        sessionStorage.setItem("userData", JSON.stringify(userData));
         setIsLoggedIn(true);
         setUser(userData);
     };
 
     const logout = () => {
-        sessionStorage.removeItem('userData');
+        sessionStorage.removeItem("userData");
         setIsLoggedIn(false);
         setUser(null);
     };
 
     useEffect(() => {
-        // teste
+        const storedUserData = sessionStorage.getItem("userData");
+        if (storedUserData) {
+            const userData: IUserData = JSON.parse(storedUserData);
+            setIsLoggedIn(true);
+            setUser(userData);
+        }
     }, []);
 
-    const value = useMemo(() => ({ isLoggedIn, user, login, logout }), [isLoggedIn, user]);
+    const value = useMemo(
+        () => ({ isLoggedIn, user, login, logout }),
+        [isLoggedIn, user]
+    );
 
     return (
-        <AuthContext.Provider value={value}>
-            {children}
-        </AuthContext.Provider>
+        <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
     );
 };
 

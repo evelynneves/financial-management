@@ -53,6 +53,11 @@ const Transactions: React.FC<TransactionsProps> = ({ onTransactionComplete }) =>
         userData.transactions.unshift(newTransaction);
         sessionStorage.setItem('userData', JSON.stringify(userData));
         onTransactionComplete(newTransaction);
+
+        //Clean form after submit
+        setTransactionType('deposito');
+        setAmount('00,00');
+        setIsValidAmount(true);
     };
 
     return (
