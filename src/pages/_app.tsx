@@ -11,7 +11,11 @@ import HeaderLogged from "../components/HeaderLogged/HeaderLogged";
 import { MenuProvider } from "../contexts/MenuContext";
 
 const theme = createTheme({
-    palette: { primary: { main: "#004D61" } },
+    palette: {
+        primary: {
+            main: "#004D61",
+        },
+    },
     components: {
         MuiOutlinedInput: {
             styleOverrides: {
@@ -21,17 +25,18 @@ const theme = createTheme({
                     "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
                         borderColor: "#004D61",
                     },
-                    "&:hover .MuiOutlinedInput-notchedOutline": {
+                    ".MuiOutlinedInput-notchedOutline": {
                         borderColor: "#004D61",
                     },
-                },
-            },
-        },
-        MuiButton: {
-            styleOverrides: {
-                root: {
-                    backgroundColor: "#004D61",
-                    "&:hover": { backgroundColor: "#003C4F" },
+                    "&:hover .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#003C4F",
+                    },
+                    "&.Mui-error .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#e57471",
+                    },
+                    "&.Mui-focused.Mui-error .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#e57471",
+                    },
                 },
             },
         },

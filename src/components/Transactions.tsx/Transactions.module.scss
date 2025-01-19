@@ -33,6 +33,14 @@
     
     .input {
         width: 250px;
+        margin-bottom: 0;
+    }
+
+    .errorMessage {
+        color: #e57471;
+        font-size: 14px;
+        font-weight: 700;
+        text-align: end;
     }
     
     /* Adiciona estilos personalizados para input e select */
@@ -73,4 +81,3 @@
         }
     }
 }
-
