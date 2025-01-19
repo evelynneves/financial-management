@@ -4,7 +4,7 @@ import styles from './Transactions.module.scss';
 import { formatCurrency } from '@/src/utils/formatCurrency';
 import { IUserData } from '@/src/interfaces/auth';
 import { ITransactionItemProps } from '@/src/interfaces/components';
-import TransactionalForm from './TransactionalForm/TransactionalForm';
+import TransactionalForm from '../TransactionForm/TransactionalForm';
 
 interface TransactionsProps {
     onTransactionComplete: (transaction: ITransactionItemProps) => void;
