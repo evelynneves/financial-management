@@ -14,19 +14,23 @@ import ServicesAvailable from "../components/ServicesAvailable/ServicesAvailable
 import ManageCards from "../components/ManageCards/ManageCards";
 import Transactions from "../components/Transactions.tsx/Transactions";
 import { ITransactionItemProps } from "../interfaces/components";
+import { IUserData } from "../interfaces/auth";
 
 const Services = () => {
     const { selectedMenuItem, setSelectedMenuItem } = useMenu();
     const [showBalance, setShowBalance] = useState(true);
     const [showCards, setShowCards] = useState(false);
-    const [transactions, setTransactions] = useState<ITransactionItemProps[]>([]);
+    const [transactions, setTransactions] = useState<ITransactionItemProps[]>(
+        []
+    );
 
-    useEffect(() => { 
-        const storedTransactions = sessionStorage.getItem('transactions');
-        if (storedTransactions) { 
-            setTransactions(JSON.parse(storedTransactions)); 
+    useEffect(() => {
+        const storedUserData = sessionStorage.getItem("userData");
+        if (storedUserData) {
+            const userData: IUserData = JSON.parse(storedUserData);
+            setTransactions(userData.transactions);
         }
-     }, []);
+    }, []);
 
     const toggleBalanceVisibility = () => {
         setShowBalance(!showBalance);
@@ -43,7 +47,11 @@ const Services = () => {
 
         switch (selectedMenuItem) {
             case "Início":
-                return <Transactions />;
+                return (
+                    <Transactions
+                        onTransactionComplete={handleTransactionComplete}
+                    />
+                );
             case "Transferências":
                 return <Transferencias />;
             case "Investimentos":
@@ -53,6 +61,13 @@ const Services = () => {
             default:
                 return null;
         }
+    };
+
+    const handleTransactionComplete = (transaction: ITransactionItemProps) => {
+        setTransactions((prevTransactions) => [
+            transaction,
+            ...prevTransactions,
+        ]);
     };
 
     const today = new Date();

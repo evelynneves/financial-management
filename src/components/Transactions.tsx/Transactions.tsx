@@ -2,8 +2,14 @@ import React, { ChangeEvent, useState } from 'react';
 import { Box, Typography, FormControl, InputLabel, Select, MenuItem, TextField, Button, SelectChangeEvent } from '@mui/material';
 import styles from './Transactions.module.scss'; // Importação do arquivo de estilos
 import { formatCurrency } from '@/src/utils/formatCurrency';
+import { IUserData } from '@/src/interfaces/auth';
+import { ITransactionItemProps } from '@/src/interfaces/components';
 
-const Transactions: React.FC = () => {
+interface TransactionsProps {
+    onTransactionComplete: (transaction: ITransactionItemProps) => void;
+}
+
+const Transactions: React.FC<TransactionsProps> = ({ onTransactionComplete }) => {
     const [transactionType, setTransactionType] = useState<string>('deposito');
     const [amount, setAmount] = useState<string>('');
     const [isValidAmount, setIsValidAmount] = useState<boolean>(true);
@@ -18,7 +24,6 @@ const Transactions: React.FC = () => {
         
         setAmount(formattedAmount);
 
-        // Validates if the value is zero
         const numericValue = parseFloat(formattedAmount.replace(/\./g, '').replace(',', '.'));
         setIsValidAmount(numericValue !== 0);
     };
@@ -28,28 +33,46 @@ const Transactions: React.FC = () => {
             console.log('Invalid amount: Value cannot be zero.');
             return;
         }
-        // Lógica para concluir a transação
-        console.log(`Type: ${transactionType}, Amount: ${amount}`);
+
+        const userDataString = sessionStorage.getItem('userData');
+        if (!userDataString) {
+            console.log('Usuário não encontrado. Por favor, faça o login.');
+            return;
+        }
+
+        const userData: IUserData = JSON.parse(userDataString);
+
+        const newTransaction: ITransactionItemProps = {
+            month: "Janeiro",
+            date: new Date().toLocaleDateString('pt-BR'),
+            type: transactionType === 'deposito' ? 'Depósito' : 'Transferência',
+            amount: amount.replace('R$', '').trim(),
+            isNegative: transactionType !== 'deposito',
+        };
+
+        userData.transactions.unshift(newTransaction);
+        sessionStorage.setItem('userData', JSON.stringify(userData));
+        onTransactionComplete(newTransaction);
     };
 
     return (
         <Box className={styles.transactionsContainer}>
-            <Typography variant="h4" className={styles.title}>New Transaction</Typography>
+            <Typography variant="h4" className={styles.title}>Nova transação</Typography>
             <Box className={styles.inputWrapper}>
-                <InputLabel className={styles.customLabel}>Select Transaction Type</InputLabel>
+                <InputLabel className={styles.customLabel}>Selecione o tipo de transação</InputLabel>
                 <FormControl variant="outlined" margin="normal" className={styles.dropdown}>
                     <Select
                         value={transactionType}
                         onChange={handleTypeChange}
                         className={styles.customInput}
                     >
-                        <MenuItem value="deposito">Deposit</MenuItem>
-                        <MenuItem value="transferencia">Transfer</MenuItem>
+                        <MenuItem value="deposito">Depósito</MenuItem>
+                        <MenuItem value="transferencia">Transferência</MenuItem>
                     </Select>
                 </FormControl>
             </Box>
             <Box className={styles.inputWrapper}>
-                <InputLabel className={styles.customLabel}>Amount</InputLabel>
+                <InputLabel className={styles.customLabel}>Valor</InputLabel>
                 <FormControl margin="normal" className={styles.input}>
                     <TextField
                         value={amount}
@@ -59,11 +82,11 @@ const Transactions: React.FC = () => {
                         className={`${styles.customInput} ${!isValidAmount ? styles.invalidInput : ''}`}
                         error={!isValidAmount}
                     />
-                    {!isValidAmount && <Typography variant="body2" className={styles.errorMessage}>Value cannot be zero</Typography>}
+                    {!isValidAmount && <Typography variant="body2" className={styles.errorMessage}>O valor não pode ser zero</Typography>}
                 </FormControl>
             </Box>
             <Button variant="contained" className={styles.submitButton} onClick={handleSubmit}>
-                Complete Transaction
+                Concluir transação
             </Button>
         </Box>
     );

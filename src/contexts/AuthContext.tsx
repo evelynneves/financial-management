@@ -13,7 +13,6 @@ export const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
     const [user, setUser] = useState<IUserData | null>(null);
 
     const login = (userData: IUserData) => {
-        sessionStorage.setItem('transactions', JSON.stringify(userData.transactions));
         sessionStorage.setItem('userData', JSON.stringify(userData));
         setIsLoggedIn(true);
         setUser(userData);
