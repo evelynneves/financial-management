@@ -1,23 +1,35 @@
 import React, { createContext, useContext, useEffect, useState, useMemo } from "react";
-import { IAuthContextType, IAuthProviderProps } from "../interfaces/auth";
+import { IAuthContextType, IAuthProviderProps, IUserData } from "../interfaces/auth";
 
 const AuthContext = createContext<IAuthContextType>({
     isLoggedIn: false,
-    login: () => {},
+    user: null,
+    login: (userData: IUserData) => {},
     logout: () => {},
 });
 
 export const AuthProvider: React.FC<IAuthProviderProps> = ({ children }) => {
-    const [isLoggedIn, setIsLoggedIn] = useState(true);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [user, setUser] = useState<IUserData | null>(null);
 
-    const login = () => setIsLoggedIn(true);
-    const logout = () => setIsLoggedIn(false);
+    const login = (userData: IUserData) => {
+        setIsLoggedIn(true);
+        setUser(userData);
+
+        sessionStorage.setItem('transactions', JSON.stringify(userData.transactions));
+        sessionStorage.setItem('userData', JSON.stringify(userData));
+    };
+
+    const logout = () => {
+        setIsLoggedIn(false);
+        setUser(null);
+    };
 
     useEffect(() => {
-        //teste
+        // teste
     }, []);
 
-    const value = useMemo(() => ({ isLoggedIn, login, logout }), [isLoggedIn]);
+    const value = useMemo(() => ({ isLoggedIn, user, login, logout }), [isLoggedIn, user]);
 
     return (
         <AuthContext.Provider value={value}>

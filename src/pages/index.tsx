@@ -1,6 +1,6 @@
 import { Box, Button, Container, Typography } from "@mui/material";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import styles from "../styles/Home.module.scss";
 import CreateAccountModal from "@/src/components/CreateAccountModal";
@@ -16,6 +16,18 @@ const HomePage: React.FC = () => {
 
     const handleLoginModalOpen = () => setLoginModalOpen(true);
     const handleLoginModalClose = () => setLoginModalOpen(false);
+
+    useEffect(() => {
+        const users = [
+            {
+                name: "Joana da Silva Oliveira",
+                email: "joanadasilvaoliveira@email.com.br",
+                password: "desafio@2024",
+                acceptanceTerms: true, 
+            }, 
+        ]; 
+        sessionStorage.setItem('users', JSON.stringify(users)); 
+    }, []);
 
     return (
         <Container className={styles.container} maxWidth={false}>
@@ -98,7 +110,7 @@ const HomePage: React.FC = () => {
 
                     <Box className={styles.featureBox}>
                         <Image
-                            src="images//points_icon.svg"
+                            src="images/points_icon.svg"
                             alt="Ícone de Pontos"
                             width={73}
                             height={56}

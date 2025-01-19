@@ -59,7 +59,7 @@ const Transactions: React.FC = () => {
                         className={`${styles.customInput} ${!isValidAmount ? styles.invalidInput : ''}`}
                         error={!isValidAmount}
                     />
-                {!isValidAmount && <Typography variant="body2" className={styles.errorMessage}>Value cannot be zero</Typography>}
+                    {!isValidAmount && <Typography variant="body2" className={styles.errorMessage}>Value cannot be zero</Typography>}
                 </FormControl>
             </Box>
             <Button variant="contained" className={styles.submitButton} onClick={handleSubmit}>

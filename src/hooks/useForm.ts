@@ -22,8 +22,10 @@ const useForm = <T extends IFormData | ILoginForm>(initialData: T) => {
 
     useEffect(() => {
         const isFormFilled = Object.values(formData).every((value) => value !== "");
-        setIsFormValid(isFormFilled && !emailError);
+        const isTermsAccepted = formData.acceptanceTerms === true;
+        setIsFormValid(isFormFilled && !emailError && isTermsAccepted);
     }, [formData, emailError]);
+    
 
     return { formData, handleChange, isFormValid, emailError };
 };

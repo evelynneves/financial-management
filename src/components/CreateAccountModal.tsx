@@ -1,23 +1,73 @@
-import React, { ChangeEvent, useState } from "react";
-import { TextField, Checkbox, FormControlLabel } from "@mui/material";
+import React, { ChangeEvent } from "react";
+import { Checkbox, FormControlLabel, TextField } from "@mui/material";
 import GenericModal from "./GenericModal";
-
 import { IHomeModalProps } from "../interfaces/components";
 import useForm from "../hooks/useForm";
+import { useRouter } from "next/router";
+import { useAuth } from "../contexts/AuthContext";
 
-const CreateAccountModal: React.FC<IHomeModalProps> = ({ open, handleClose }) => {
-    const { formData, handleChange, isFormValid, emailError } = useForm(
-        { name: "", email: "", password: "" }
-    );
-    const [termsAccepted, setTermsAccepted] = useState(false);
+const CreateAccountModal: React.FC<IHomeModalProps> = ({
+    open,
+    handleClose,
+}) => {
+    const { formData, handleChange, isFormValid, emailError } = useForm({
+        name: "",
+        email: "",
+        password: "",
+        acceptanceTerms: false,
+    });
+    const { login } = useAuth();
+    const router = useRouter();
 
     const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setTermsAccepted(e.target.checked);
+        handleChange({
+            target: { name: "acceptanceTerms", value: e.target.checked },
+        } as unknown as ChangeEvent<HTMLInputElement>);
     };
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         console.log(formData);
+
+        const users = JSON.parse(sessionStorage.getItem("users") || "[]");
+        const newUser = {
+            name: formData.name,
+            email: formData.email,
+            password: formData.password,
+            acceptanceTerms: formData.acceptanceTerms,
+        };
+
+        users.push(newUser);
+        sessionStorage.setItem("users", JSON.stringify(users));
+
+        const userData = {
+            personalData: {
+                name: formData.name,
+                email: formData.email,
+            },
+            transactions: [],
+            investiments: {
+                totalAmount: "R$ 0,00",
+                fixedIncome: "R$ 0,00",
+                variableIncome: "R$ 0,00",
+            },
+            cards: {
+                physicalCard: [
+                    {
+                        userName: formData.name,
+                    },
+                ],
+                virtualCard: [
+                    {
+                        userName: formData.name,
+                    },
+                ],
+            },
+        };
+
+        login(userData);
+        handleClose();
+        router.push("/services");
     };
 
     const handleModalClose = () => {
@@ -32,7 +82,7 @@ const CreateAccountModal: React.FC<IHomeModalProps> = ({ open, handleClose }) =>
             illustration="/images/illustration_registration.svg"
             buttonText="Criar conta"
             onSubmit={handleSubmit}
-            isFormValid={isFormValid && termsAccepted}
+            isFormValid={isFormValid}
         >
             <TextField
                 name="name"
@@ -54,7 +104,11 @@ const CreateAccountModal: React.FC<IHomeModalProps> = ({ open, handleClose }) =>
                 onChange={handleChange}
                 required
                 error={emailError}
-                helperText={emailError ? "Dado incorreto. Revise e digite novamente." : ""}
+                helperText={
+                    emailError
+                        ? "Dado incorreto. Revise e digite novamente."
+                        : ""
+                }
             />
             <TextField
                 name="password"
@@ -68,7 +122,13 @@ const CreateAccountModal: React.FC<IHomeModalProps> = ({ open, handleClose }) =>
                 required
             />
             <FormControlLabel
-                control={<Checkbox checked={termsAccepted} onChange={handleCheckboxChange} required />}
+                control={
+                    <Checkbox
+                        checked={formData.acceptanceTerms}
+                        onChange={handleCheckboxChange}
+                        required
+                    />
+                }
                 label="Li e estou ciente quanto às condições de tratamento dos meus dados."
             />
         </GenericModal>
