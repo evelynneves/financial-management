@@ -1,4 +1,8 @@
-import { Box, Typography } from "@mui/material";
+import React from "react";
+import { Box, Typography, IconButton } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 import styles from './TransactionalItem.module.scss';
 import { ITransactionItemProps } from "@/src/interfaces/components";
 
@@ -20,6 +24,17 @@ const TransactionItem: React.FC<ITransactionItemProps> = ({ month, date, type, a
                 {isNegative ? `-R$ ${amount}` : `R$ ${amount}`}
             </Typography>
             <div className={styles.underline}></div>
+            <Box className={styles.actionIcons}>
+                <IconButton size="small">
+                    <VisibilityIcon className={styles.icon}/>
+                </IconButton>
+                <IconButton size="small">
+                    <EditIcon className={styles.icon}/>
+                </IconButton>
+                <IconButton size="small">
+                    <DeleteIcon className={styles.icon}/>
+                </IconButton>
+            </Box>
         </Box>
     );
 };

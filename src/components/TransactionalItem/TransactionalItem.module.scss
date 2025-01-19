@@ -1,9 +1,14 @@
 .transactionBox {
     display: flex;
     flex-direction: column;
-    padding: 10px 10px 10px 0;
-    margin-bottom: 10px;
-    border-radius: 8px;
+    padding: 20px 0;
+    position: relative;
+
+    &:hover {
+        .actionIcons {
+            display: flex;
+        }
+    }
 
     .underline {
         width: 100%;
@@ -48,5 +53,25 @@
         font-size: 16px;
         font-weight: 700;
         color: #f44336;
+    }
+
+    .actionIcons {
+        display: none;
+        position: absolute;
+        top: -4px;
+        right: -2px;
+
+        button {
+            color:#003c4f;
+        }
+
+        .icon {
+            font-size: 18px;
+
+            &:hover {
+                color: #004D61;
+                opacity: 0.5;
+            }
+        }
     }
 }
