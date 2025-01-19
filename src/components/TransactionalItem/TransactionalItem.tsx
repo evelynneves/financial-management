@@ -1,12 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Typography, IconButton } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import styles from './TransactionalItem.module.scss';
-import { ITransactionItemProps } from "@/src/interfaces/components";
+import { ITransactionItemWithActionsProps } from "@/src/interfaces/components";
+import ConfirmationModal from "../ConfirmationModal/ConfirmatinModa";
 
-const TransactionItem: React.FC<ITransactionItemProps> = ({ month, date, type, amount, isNegative }) => {
+const TransactionItem: React.FC<ITransactionItemWithActionsProps> = ({ month, date, type, amount, isNegative, onDelete }) => {
+    const [open, setOpen] = useState(false);
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClose = () => {
+        setOpen(false);
+    };
+
+    const handleConfirm = () => {
+        onDelete();
+        handleClose();
+    };
+
     return (
         <Box className={styles.transactionBox}>
             <Box className={styles.transactionHeader}>
@@ -25,16 +41,17 @@ const TransactionItem: React.FC<ITransactionItemProps> = ({ month, date, type, a
             </Typography>
             <div className={styles.underline}></div>
             <Box className={styles.actionIcons}>
-                <IconButton size="small">
+                <IconButton size="small" onClick={handleOpen}>
                     <VisibilityIcon className={styles.icon}/>
                 </IconButton>
                 <IconButton size="small">
                     <EditIcon className={styles.icon}/>
                 </IconButton>
-                <IconButton size="small">
+                <IconButton size="small" onClick={handleOpen}>
                     <DeleteIcon className={styles.icon}/>
                 </IconButton>
             </Box>
+            <ConfirmationModal open={open} onClose={handleClose} onConfirm={handleConfirm} />
         </Box>
     );
 };

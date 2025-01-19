@@ -30,6 +30,8 @@ export interface ITransactionItemProps {
     isNegative: boolean;
 }
 
+export interface ITransactionItemWithActionsProps extends ITransactionItemProps { onDelete: () => void; }
+
 export interface IMenuListProps {
     selectedMenuItem: string;
     handleMenuItemClick: (menuItem: string) => void;

@@ -20,15 +20,13 @@ const Services = () => {
     const { selectedMenuItem, setSelectedMenuItem } = useMenu();
     const [showBalance, setShowBalance] = useState(true);
     const [showCards, setShowCards] = useState(false);
-    const [transactions, setTransactions] = useState<ITransactionItemProps[]>(
-        []
-    );
+    const [transactions, setTransactions] = useState<ITransactionItemProps[]>([]);
 
-    useEffect(() => {
-        const storedUserData = sessionStorage.getItem("userData");
-        if (storedUserData) {
+    useEffect(() => { 
+        const storedUserData = sessionStorage.getItem('userData');
+        if (storedUserData) { 
             const userData: IUserData = JSON.parse(storedUserData);
-            setTransactions(userData.transactions);
+            setTransactions(userData.transactions); 
         }
     }, []);
 
@@ -47,11 +45,7 @@ const Services = () => {
 
         switch (selectedMenuItem) {
             case "Início":
-                return (
-                    <Transactions
-                        onTransactionComplete={handleTransactionComplete}
-                    />
-                );
+                return <Transactions onTransactionComplete={handleTransactionComplete} />;
             case "Transferências":
                 return <Transferencias />;
             case "Investimentos":
@@ -64,10 +58,22 @@ const Services = () => {
     };
 
     const handleTransactionComplete = (transaction: ITransactionItemProps) => {
-        setTransactions((prevTransactions) => [
-            transaction,
-            ...prevTransactions,
-        ]);
+        setTransactions((prevTransactions) => [transaction, ...prevTransactions]);
+    };
+
+    const handleDeleteTransaction = (index: number) => {
+        setTransactions((prevTransactions) => {
+            const updatedTransactions = [...prevTransactions];
+            updatedTransactions.splice(index, 1);
+
+            const storedUserData = sessionStorage.getItem('userData');
+            if (storedUserData) {
+                const userData: IUserData = JSON.parse(storedUserData);
+                userData.transactions = updatedTransactions;
+                sessionStorage.setItem('userData', JSON.stringify(userData));
+            }
+            return updatedTransactions;
+        });
     };
 
     const today = new Date();
@@ -158,6 +164,7 @@ const Services = () => {
                             type={transaction.type}
                             amount={transaction.amount}
                             isNegative={transaction.isNegative}
+                            onDelete={() => handleDeleteTransaction(index)}
                         />
                     ))}
                 </Sidebar>
