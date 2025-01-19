@@ -1,9 +1,10 @@
 import React, { ChangeEvent, useState } from 'react';
-import { Box, Typography, FormControl, InputLabel, Select, MenuItem, TextField, Button, SelectChangeEvent } from '@mui/material';
-import styles from './Transactions.module.scss'; // Importação do arquivo de estilos
+import { Box, SelectChangeEvent, Typography } from '@mui/material';
+import styles from './Transactions.module.scss';
 import { formatCurrency } from '@/src/utils/formatCurrency';
 import { IUserData } from '@/src/interfaces/auth';
 import { ITransactionItemProps } from '@/src/interfaces/components';
+import TransactionalForm from './TransactionalForm/TransactionalForm';
 
 interface TransactionsProps {
     onTransactionComplete: (transaction: ITransactionItemProps) => void;
@@ -29,10 +30,12 @@ const Transactions: React.FC<TransactionsProps> = ({ onTransactionComplete }) =>
     };
 
     const handleSubmit = () => {
-        if (!isValidAmount) {
+        if (!isValidAmount || !amount) {
             console.log('Invalid amount: Value cannot be zero.');
             return;
         }
+
+        console.log("amount", amount)
 
         const userDataString = sessionStorage.getItem('userData');
         if (!userDataString) {
@@ -54,45 +57,23 @@ const Transactions: React.FC<TransactionsProps> = ({ onTransactionComplete }) =>
         sessionStorage.setItem('userData', JSON.stringify(userData));
         onTransactionComplete(newTransaction);
 
-        //Clean form after submit
+        // Clean form after submit
         setTransactionType('deposito');
-        setAmount('00,00');
+        setAmount('');
         setIsValidAmount(true);
     };
 
     return (
         <Box className={styles.transactionsContainer}>
             <Typography variant="h4" className={styles.title}>Nova transação</Typography>
-            <Box className={styles.inputWrapper}>
-                <InputLabel className={styles.customLabel}>Selecione o tipo de transação</InputLabel>
-                <FormControl variant="outlined" margin="normal" className={styles.dropdown}>
-                    <Select
-                        value={transactionType}
-                        onChange={handleTypeChange}
-                        className={styles.customInput}
-                    >
-                        <MenuItem value="deposito">Depósito</MenuItem>
-                        <MenuItem value="transferencia">Transferência</MenuItem>
-                    </Select>
-                </FormControl>
-            </Box>
-            <Box className={styles.inputWrapper}>
-                <InputLabel className={styles.customLabel}>Valor</InputLabel>
-                <FormControl margin="normal" className={styles.input}>
-                    <TextField
-                        value={amount}
-                        onChange={handleAmountChange}
-                        variant="outlined"
-                        placeholder="00,00"
-                        className={`${styles.customInput} ${!isValidAmount ? styles.invalidInput : ''}`}
-                        error={!isValidAmount}
-                    />
-                    {!isValidAmount && <Typography variant="body2" className={styles.errorMessage}>O valor não pode ser zero</Typography>}
-                </FormControl>
-            </Box>
-            <Button variant="contained" className={styles.submitButton} onClick={handleSubmit}>
-                Concluir transação
-            </Button>
+            <TransactionalForm
+                transactionType={transactionType}
+                amount={amount}
+                isValidAmount={isValidAmount}
+                handleTypeChange={handleTypeChange}
+                handleAmountChange={handleAmountChange}
+                handleSubmit={handleSubmit}
+            />
         </Box>
     );
 };

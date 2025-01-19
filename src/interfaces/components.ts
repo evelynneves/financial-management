@@ -1,4 +1,5 @@
-import { ReactNode } from "react";
+import { SelectChangeEvent } from "@mui/material";
+import { ChangeEvent, ReactNode } from "react";
 
 export interface IGenericModalProps {
     open: boolean;
@@ -35,4 +36,13 @@ export interface ITransactionItemWithActionsProps extends ITransactionItemProps 
 export interface IMenuListProps {
     selectedMenuItem: string;
     handleMenuItemClick: (menuItem: string) => void;
+}
+
+export interface ITransactionalFormProps {
+    transactionType: string;
+    amount: string;
+    isValidAmount: boolean;
+    handleTypeChange: (event: SelectChangeEvent<string>) => void;
+    handleAmountChange: (event: ChangeEvent<HTMLInputElement>) => void;
+    handleSubmit: () => void;
 }
