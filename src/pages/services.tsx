@@ -12,6 +12,7 @@ import Sidebar from '../components/Sidebar/Sidebar';
 import { useMenu } from '../contexts/MenuContext';
 import ServicesAvailable from '../components/ServicesAvailable/ServicesAvailable';
 import ManageCards from '../components/ManageCards/ManageCards';
+import Transactions from '../components/Transactions.tsx/Transactions';
 
 const Services = () => {
     const { selectedMenuItem, setSelectedMenuItem } = useMenu();
@@ -31,9 +32,10 @@ const Services = () => {
             return <ManageCards />;
         }
 
+        console.log("selectedMenu", selectedMenuItem)
         switch (selectedMenuItem) {
             case "Início":
-                return null;
+                return <Transactions />;
             case "Transferências":
                 return <Transferencias />;
             case "Investimentos":
@@ -98,16 +100,14 @@ const Services = () => {
                         </Box>
                         <Box className={styles.topSectionRow3}></Box>
                     </Box>
-                    {selectedMenuItem !== "Início" && (
-                        <Box className={styles.bottomSection}>
-                            {renderContent()}
-                        </Box>
-                    )}
+                    <Box className={styles.bottomSection}>
+                        {renderContent()}
+                    </Box>
                 </Box>
                 <Sidebar title="Extrato">
                     <TransactionItem
                         month="Novembro"
-                        date="18/11/4"
+                        date="18/11/2024"
                         type="Depósito"
                         amount="150"
                         isNegative={false}

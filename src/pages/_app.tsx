@@ -11,21 +11,38 @@ import HeaderLogged from "../components/HeaderLogged/HeaderLogged";
 import { MenuProvider } from "../contexts/MenuContext";
 
 const theme = createTheme({
-    palette: {
-        primary: {
-            main: "#47A138",
-            contrastText: "#ffffff",
+    palette: { primary: { main: "#004D61" } },
+    components: {
+        MuiOutlinedInput: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: "#ffffff",
+                    color: "#444444",
+                    "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#004D61",
+                    },
+                    "&:hover .MuiOutlinedInput-notchedOutline": {
+                        borderColor: "#004D61",
+                    },
+                },
+            },
         },
-        secondary: {
-            main: "#000",
+        MuiButton: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: "#004D61",
+                    "&:hover": { backgroundColor: "#003C4F" },
+                },
+            },
         },
     },
 });
 
-const AppLayout: React.FC<IAppLayoutProps> = ({ children}) => {
+const AppLayout: React.FC<IAppLayoutProps> = ({ children }) => {
     const { isLoggedIn } = useAuth();
     const router = useRouter();
-    const showHeaderFooter = !isLoggedIn || router.pathname === '/' || router.pathname === '/404';
+    const showHeaderFooter =
+        !isLoggedIn || router.pathname === "/" || router.pathname === "/404";
 
     return (
         <>
