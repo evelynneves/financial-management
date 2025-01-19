@@ -15,6 +15,8 @@ import CloseIcon from '@mui/icons-material/Close';
 import styles from "./HeaderLogged.module.scss";
 import MenuList from "../../components/MenuList/MenuList";
 import { useMenu } from "../../contexts/MenuContext";
+import { useAuth } from "../../contexts/AuthContext"; // Importando o useAuth
+import { useRouter } from "next/router";
 
 const HeaderLogged: React.FC<{ userName: string }> = ({ userName }) => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -22,13 +24,21 @@ const HeaderLogged: React.FC<{ userName: string }> = ({ userName }) => {
     const isMediumScreen = useMediaQuery('(min-width: 361px) and (max-width: 719px)');
     const isExtraSmallScreen = useMediaQuery('(max-width: 360px)');
     const { selectedMenuItem, setSelectedMenuItem } = useMenu();
-
+    const { logout } = useAuth();
+    const router = useRouter();
+    
     const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
 
     const handleClose = () => {
         setAnchorEl(null);
+    };
+
+    const handleLogout = () => {
+        logout();
+        handleClose();
+        router.push("/");
     };
 
     const toggleDrawer = (open: boolean) => () => {
@@ -84,7 +94,7 @@ const HeaderLogged: React.FC<{ userName: string }> = ({ userName }) => {
                 >
                     <MenuItem onClick={handleClose}>Minha conta</MenuItem>
                     <MenuItem onClick={handleClose}>Configurações</MenuItem>
-                    <MenuItem onClick={handleClose}>Sair</MenuItem>
+                    <MenuItem onClick={handleLogout}>Sair</MenuItem> {/* Chamar a função handleLogout */}
                 </Menu>
             </Toolbar>
             <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
