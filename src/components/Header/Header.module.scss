@@ -1,7 +1,7 @@
 .header {
     width: 100%;
     padding: 25px 40px;
-    background-color: #000000;
+    background-color: var(--foreground-color);
     display: grid;
     grid-template-columns: auto 1fr auto;
     align-items: center;
@@ -21,20 +21,20 @@
     }
 
     .containedButton {
-        background-color: #47A138;
+        background-color: var(--secondary-color);
 
         &:hover {
-            background-color: #3D8F32;
+            background-color: var(--secondary-color-hover);
         }
     }
 
     .outlinedButton {
-        border: 1px solid #47A138;
-        color: #47A138;
+        border: 1px solid var(--secondary-color);
+        color: var(--secondary-color);
 
         &:hover {
-            border: 1px solid #3D8F32;
-            color: #3D8F32;
+            border: 1px solid var(--secondary-color-hover);
+            color: var(--secondary-color-hover);
         }
     }
 
@@ -45,12 +45,12 @@
         justify-content: flex-end;
 
         a {
-            color: #47a138;
+            color: var(--secondary-color);
             text-decoration: none;
             transition: color 0.3s, box-shadow 0.3s;
 
             &:hover {
-                color: #3c8a2b;
+                color: var(--secondary-color-hover);
             }
         }
     }
@@ -82,18 +82,18 @@
         min-width: 200px;
 
         .drawerContent {
-            background-color: #E4EDE3;
+            background-color: var(--background-drawer);
             min-width: 200px;
             padding-bottom: 10px;
             padding-top: 0;
         }
 
         .drawerItem {
-            color: #000000;
+            color: var(--foreground-color);
             text-align: center;
 
             &:hover {
-                color: #FF5031;
+                color: var(--tertiary-color);
             }
         }
     }

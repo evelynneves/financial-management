@@ -1,7 +1,7 @@
 .footer {
     width: 100%;
-    background-color: #000000;
-    color: #ffffff;
+    background-color: var(--foreground-color);
+    color: var(--white-color);
     padding: 30px;
 
     .content {
@@ -17,7 +17,7 @@
     }
 
     .listTitle {
-        font-weight: 700;
+        font-weight: var(--font-weight-bold);
     }
 
     ul {

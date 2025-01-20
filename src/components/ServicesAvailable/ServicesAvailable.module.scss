@@ -1,5 +1,5 @@
 .servicesTitle {
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
 }
 
 .servicesGrid {
@@ -14,18 +14,18 @@
     align-items: center;
     padding: 30px;
     gap: 20px;
-    background-color: #f2f2f2;
-    border-radius: 8px;
+    background-color: var(--mist-gray-color);
+    border-radius: var(--border-radius-medium);
     cursor: pointer;
 
     &:hover {
-        background-color: #e0e0e0;
+        background-color: var(--very-light-gray-color);
         transform: translateY(-5px);
     }
 
     p {
-        font-size: 16px;
-        font-weight: 700;
+        font-size: var(--font-size-body);
+        font-weight: var(--font-weight-bold);
     }
 }
 

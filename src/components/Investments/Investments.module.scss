@@ -2,13 +2,13 @@
     font-family: "Montserrat", sans-serif;
 
     .title {
-        font-size: 25px;
+        font-size: var(--font-size-title);
         margin-bottom: 25px;
     }
 
     .total {
-        font-size: 25px;
-        color: #004d61;
+        font-size: var(--font-size-title);
+        color: var(--primary-color);
         margin-bottom: 20px;
     }
 
@@ -24,26 +24,26 @@
         align-items: center;
         justify-content: space-evenly;
         height: 95px;
-        background-color: #004d61;
-        color: #ffffff;
+        background-color: var(--primary-color);
+        color: var(--white-color);
         padding: 0 20px;
-        border-radius: 8px;
+        border-radius: var(--border-radius-medium);
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 
         .cardTitle {
-            color: #dadada;
-            font-size: 16px;
+            color: var(--lighter-gray-color);
+            font-size: var(--font-size-body);
         }
 
         .cardAmount {
-            font-size: 20px;
+            font-size: var(--font-size-subtitle);
             text-align: center;
         }
     }
 
     .statistics {
-        color: #000000;
-        font-size: 20px;
+        color: var(--foreground-color);
+        font-size: var(--font-size-subtitle);
         margin-bottom: 20px;
     }
 
@@ -52,8 +52,8 @@
         justify-content: center;
         gap: 20px;
         padding: 20px;
-        background-color: #004d61;
-        border-radius: 8px;
+        background-color: var(--primary-color);
+        border-radius: var(--border-radius-medium);
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
@@ -74,25 +74,25 @@
         gap: 10px;
 
         p {
-            color: #ffffff;
-            font-size: 16px;
+            color: var(--white-color);
+            font-size: var(--font-size-body);
         }
     }
 
     .blue {
-        color: #2567f9;
+        color: var(--blue-color);
     }
 
     .purple {
-        color: #8f3cff;
+        color: var(--purple-color);
     }
 
     .pink {
-        color: #ff3c82;
+        color: var(--pink-color);
     }
 
     .orange {
-        color: #f1823d;
+        color: var(--orange-colo);
     }
 }
 

@@ -42,7 +42,7 @@ const EditTransactionModal: React.FC<IEditTransactionModalProps> = ({ open, onCl
     };
 
     return (
-        <Dialog open={open} onClose={onClose} className={styles.dialogContainer} disableScrollLock>
+        <Dialog open={open} onClose={onClose} className={styles.dialogContainer}>
             <DialogTitle className={styles.dialogTitle}>Editar Transação</DialogTitle>
             <DialogContent className={styles.dialogContent}>
                 <TransactionalForm

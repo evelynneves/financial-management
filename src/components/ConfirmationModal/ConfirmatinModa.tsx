@@ -10,7 +10,7 @@ interface ConfirmationModalProps {
 
 const ConfirmationModal: React.FC<ConfirmationModalProps> = ({ open, onClose, onConfirm }) => {
     return (
-        <Dialog open={open} onClose={onClose} className={styles.dialogContainer} disableScrollLock>
+        <Dialog open={open} onClose={onClose} className={styles.dialogContainer}>
             <DialogTitle className={styles.dialogTitle}>Confirmar Remoção</DialogTitle>
             <DialogContent>
                 <DialogContentText className={styles.dialogContentText}>Você tem certeza que deseja remover esta transação?</DialogContentText>

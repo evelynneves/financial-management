@@ -1,11 +1,11 @@
 .manageCardsContainer {
     .title {
-        font-size: 25px;
+        font-size: var(--font-size-title);
     }
 
     .subtitle {
-        color: #2f2e41;
-        font-size: 20px;
+        color: var(--accent-color);
+        font-size: var(--font-size-subtitle);
         margin-top: 15px;
     }
 }

@@ -11,9 +11,9 @@
         flex-direction: column;
         gap: 20px;
         padding: 20px;
-        border-radius: 6px;
-        background-color: #004d61;
-        color: #ffffff;
+        border-radius: var(--border-radius-small);
+        background-color: var(--primary-color);
+        color: var(--white-color);
         font-family: "Montserrat", sans-serif;
         background-image: url("/images/card_illustration.svg");
         background-repeat: no-repeat;
@@ -21,16 +21,16 @@
         background-size: auto 100%;
 
         .cardInfo {
-            font-size: 16px;
+            font-size: var(--font-size-body);
         }
 
         .userInfo {
-            font-size: 12px;
+            font-size: var(--font-size-caption);
         }
     }
 
     .virtualCard {
-        background-color: #8b8b8b;
+        background-color: var(--dark-gray-color);
     }
 
     .cardActions {
@@ -44,20 +44,20 @@
             width: 250px;
             height: 48px;
             text-transform: none;
-            font-size: 16px;
+            font-size: var(--font-size-body);
         }
 
         .primaryButton {
-            background-color: #ff5031;
+            background-color: var(--tertiary-color);
         }
 
         .outlinedButton {
-            border-color: #c56f6f;
-            color: #c56f6f;
+            border-color: var(--light-error-color);
+            color: var(--light-error-color);
         }
 
         p {
-            color: #2f2e41;
+            color: var(--accent-color);
         }
     }
 }

@@ -4,9 +4,9 @@
     gap: 30px;
 
     .title {
-        font-size: 25px;
-        font-weight: 700;
-        color: #000000;
+        font-size: var(--font-size-title);
+        font-weight: var(--font-weight-bold);
+        color: var(--foreground-color);
         margin-bottom: 10px;
     }
 }

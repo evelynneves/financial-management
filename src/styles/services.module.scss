@@ -2,7 +2,7 @@
     width: 100%;
     min-height: calc(100vh - 64px);
     padding: 50px;
-    background-color: #e4ede3;
+    background-color: var(--background-drawer);
 }
 
 .gridContainer {
@@ -16,7 +16,7 @@
     grid-template-rows: auto auto;
     justify-content: center;
     gap: 20px;
-    border-radius: 8px;
+    border-radius: var(--border-radius-medium);
 }
 
 .leftSideBar {
@@ -26,10 +26,10 @@
 .topSection {
     width: 690px;
     height: 400px;
-    background-color: #004d61;
+    background-color: var(--primary-color);
     padding: 30px;
-    border-radius: 8px;
-    color: #ffffff;
+    border-radius: var(--border-radius-medium);
+    color: var(--white-color);
     display: grid;
     grid-template-rows: auto auto 1fr;
     grid-template-columns: 1fr 1fr;
@@ -58,8 +58,8 @@
     width: 690px;
     min-height: 478px;
     padding: 30px;
-    background-color: #cbcbcb;
-    border-radius: 8px;
+    background-color: var(--light-gray-color);
+    border-radius: var(--border-radius-medium);
 }
 
 .greeting {
@@ -78,13 +78,13 @@
 }
 
 .visibleIcon {
-    color: #FF5031;
+    color: var(--tertiary-color);
 }
 
 .underline {
     width: 100%;
     height: 2px;
-    background-color: #FF5031;
+    background-color: var(--tertiary-color);
     margin-bottom: 8px;
     align-self: flex-end;
 }
@@ -97,7 +97,7 @@
 
 .balanceAmount {
     font-size: 30px;
-    font-weight: bold;
+    font-weight: var(--font-weight-bold);
     text-align: right;
 }
 

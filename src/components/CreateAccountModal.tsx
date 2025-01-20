@@ -128,6 +128,7 @@ const CreateAccountModal: React.FC<IHomeModalProps> = ({
                         checked={formData.acceptanceTerms}
                         onChange={handleCheckboxChange}
                         required
+                        sx={{ color: '#3d8f328', '&.Mui-checked': { color: '#47a138' }}}
                     />
                 }
                 label="Li e estou ciente quanto às condições de tratamento dos meus dados."

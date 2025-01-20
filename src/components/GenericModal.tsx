@@ -16,7 +16,7 @@ const GenericModal: React.FC<IGenericModalProps> = ({
     buttonColor = "#47A138",
 }) => {
     return (
-        <Modal open={open} onClose={handleClose} disableScrollLock>
+        <Modal open={open} onClose={handleClose}>
             <Box
                 sx={{
                     display: "flex",

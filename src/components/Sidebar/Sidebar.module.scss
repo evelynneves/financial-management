@@ -2,13 +2,13 @@
     display: flex;
     flex-direction: column;
     min-height: calc(100vh - 124px);
-    background-color: #f5f5f5;
+    background-color: var(--background-color);
     padding: 20px;
-    border-radius: 8px;
+    border-radius: var(--border-radius-medium);
 }
 
 .title {
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
 }
 
 @media (max-width: 720px) {

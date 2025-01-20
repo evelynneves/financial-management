@@ -1,5 +1,5 @@
 .gradiente {
-    background: linear-gradient(to bottom, #004d61, #ffffff);
+    background: linear-gradient(to bottom, var(--primary-color), var(--white-color));
 }
 
 .errorPageContainer {
@@ -12,20 +12,26 @@
     text-align: center;
 
     .title {
-        font-size: 25px;
-        font-weight: 700;
+        font-size: var(--font-size-title);
+        font-weight: var(--font-weight-bold);
     }
     
     .description {
-        font-size: 16px;
+        font-size: var(--font-size-body);
     }
 
     .backButton {
         text-transform: none;
-        background-color: #FF5031;
+        background-color: var(--tertiary-color);
 
         &:hover {
-            background-color: #E94B2E;
+            background-color: var(--tertiary-color-hover);
         }
+    }
+}
+
+@media (width: 360px) {
+    .errorPageContainer {
+        min-height: 100vh;
     }
 }

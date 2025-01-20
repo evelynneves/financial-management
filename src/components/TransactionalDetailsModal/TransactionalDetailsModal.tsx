@@ -7,7 +7,7 @@ const TransactionDetailsModal: React.FC<ITransactionDetailsModalProps> = ({ open
     const { type, amount, date, author } = transaction;
 
     return (
-        <Dialog open={open} onClose={onClose} className={styles.dialogContainer} disableScrollLock>
+        <Dialog open={open} onClose={onClose} className={styles.dialogContainer}>
             <DialogTitle className={styles.dialogTitle}>Detalhes da Transação</DialogTitle>
             <DialogContent className={styles.dialogContent}>
                 <TextField
