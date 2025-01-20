@@ -15,7 +15,6 @@ import ManageCards from "../components/ManageCards/ManageCards";
 import Transactions from "../components/Transactions.tsx/Transactions";
 import { ITransactionItemProps } from "../interfaces/components";
 import { IUserData } from "../interfaces/auth";
-import { getLoggedInUser } from "@/src/utils/getLoggedUser";
 
 const Services = () => {
     const { selectedMenuItem, setSelectedMenuItem } = useMenu();
@@ -23,14 +22,22 @@ const Services = () => {
     const [showCards, setShowCards] = useState(false);
     const [transactions, setTransactions] = useState<ITransactionItemProps[]>([]);
     const [balance, setBalance] = useState(0);
+    const [firstName, setFirstName] = useState("Usuário");
 
     useEffect(() => { 
-        const storedUserData = sessionStorage.getItem('userData');
-        if (storedUserData) { 
-            const userData: IUserData = JSON.parse(storedUserData);
-            setTransactions(userData.transactions);
-            const calculatedBalance = calculateBalance(userData.transactions);
-            setBalance(calculatedBalance);
+        if (typeof window !== "undefined") {
+            const storedUserData = sessionStorage.getItem('userData');
+            if (storedUserData) { 
+                const userData: IUserData = JSON.parse(storedUserData);
+                setTransactions(userData.transactions);
+                const calculatedBalance = calculateBalance(userData.transactions);
+                setBalance(calculatedBalance);
+
+                const name = userData.personalData.name.split(" ")[0];
+                    setFirstName(name);
+    
+            }
+
         }
     }, []);
 
@@ -115,9 +122,6 @@ const Services = () => {
 
     const today = new Date();
     const formattedDate = formatDate(today);
-
-    const loggedInUser = getLoggedInUser();
-    const firstName = loggedInUser ? loggedInUser.personalData.name.split(' ')[0] : 'Usuário';
 
     return (
         <Container className={styles.container} maxWidth={false}>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
     AppBar,
     Toolbar,
@@ -10,23 +10,37 @@ import {
     Drawer,
     useMediaQuery,
 } from "@mui/material";
-import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close';
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 import styles from "./HeaderLogged.module.scss";
 import MenuList from "../../components/MenuList/MenuList";
 import { useMenu } from "../../contexts/MenuContext";
-import { useAuth } from "../../contexts/AuthContext"; // Importando o useAuth
+import { useAuth } from "../../contexts/AuthContext";
 import { useRouter } from "next/router";
+import { getLoggedInUser } from "@/src/utils/getLoggedUser";
 
-const HeaderLogged: React.FC<{ userName: string }> = ({ userName }) => {
+const HeaderLogged: React.FC = () => {
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
     const [drawerOpen, setDrawerOpen] = useState(false);
-    const isMediumScreen = useMediaQuery('(min-width: 361px) and (max-width: 719px)');
-    const isExtraSmallScreen = useMediaQuery('(max-width: 360px)');
+    const isMediumScreen = useMediaQuery(
+        "(min-width: 361px) and (max-width: 719px)"
+    );
+    const isExtraSmallScreen = useMediaQuery("(max-width: 360px)");
     const { selectedMenuItem, setSelectedMenuItem } = useMenu();
     const { logout } = useAuth();
     const router = useRouter();
-    
+
+    const [userName, setUserName] = useState("Usuário Desconhecido");
+
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            const loggedInUser = getLoggedInUser();
+            if (loggedInUser) {
+                setUserName(loggedInUser.personalData.name);
+            }
+        }
+    }, []);
+
     const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorEl(event.currentTarget);
     };
@@ -53,15 +67,21 @@ const HeaderLogged: React.FC<{ userName: string }> = ({ userName }) => {
     return (
         <AppBar position="static">
             <Toolbar className={styles.toolbar}>
-                {(isMediumScreen || isExtraSmallScreen) ? (
-                    <Box sx={{ display: 'block', order: -1 }}>
-                        <IconButton onClick={toggleDrawer(true)} edge="start" style={{ color: "#FF5031" }}>
+                {(isMediumScreen || isExtraSmallScreen) && (
+                    <Box sx={{ display: "block", order: -1 }}>
+                        <IconButton
+                            onClick={toggleDrawer(true)}
+                            edge="start"
+                            style={{ color: "#FF5031" }}
+                        >
                             <MenuIcon />
                         </IconButton>
                     </Box>
-                ) : null}
+                )}
                 <Box className={styles.rightAligned}>
-                    <Typography variant="h6" className={styles.userName}>{userName}</Typography>
+                    <Typography variant="h6" className={styles.userName}>
+                        {userName}
+                    </Typography>
                     <IconButton
                         edge="end"
                         aria-label="account of current user"
@@ -94,16 +114,32 @@ const HeaderLogged: React.FC<{ userName: string }> = ({ userName }) => {
                 >
                     <MenuItem onClick={handleClose}>Minha conta</MenuItem>
                     <MenuItem onClick={handleClose}>Configurações</MenuItem>
-                    <MenuItem onClick={handleLogout}>Sair</MenuItem> {/* Chamar a função handleLogout */}
+                    <MenuItem onClick={handleLogout}>Sair</MenuItem>
                 </Menu>
             </Toolbar>
-            <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
-                <Box sx={{ textAlign: 'right', padding: 2, backgroundColor: '#004d61' }}>
-                    <IconButton onClick={toggleDrawer(false)} style={{ color: '#47a138' }}>
+            <Drawer
+                anchor="left"
+                open={drawerOpen}
+                onClose={toggleDrawer(false)}
+            >
+                <Box
+                    sx={{
+                        textAlign: "right",
+                        padding: 2,
+                        backgroundColor: "#004d61",
+                    }}
+                >
+                    <IconButton
+                        onClick={toggleDrawer(false)}
+                        style={{ color: "#47a138" }}
+                    >
                         <CloseIcon />
                     </IconButton>
                 </Box>
-                <MenuList selectedMenuItem={selectedMenuItem} handleMenuItemClick={handleMenuItemClick} />
+                <MenuList
+                    selectedMenuItem={selectedMenuItem}
+                    handleMenuItemClick={handleMenuItemClick}
+                />
             </Drawer>
         </AppBar>
     );

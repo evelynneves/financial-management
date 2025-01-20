@@ -10,7 +10,6 @@ import { AuthProvider, useAuth } from "../contexts/AuthContext";
 import { IAppLayoutProps } from "../interfaces/appLayout";
 import HeaderLogged from "../components/HeaderLogged/HeaderLogged";
 import { MenuProvider } from "../contexts/MenuContext";
-import { getLoggedInUser } from "@/src/utils/getLoggedUser";
 
 const theme = createTheme({
     palette: {
@@ -51,12 +50,9 @@ const AppLayout: React.FC<IAppLayoutProps> = ({ children }) => {
     const showHeaderFooter =
         !isLoggedIn || router.pathname === "/" || router.pathname === "/404";
 
-    const loggedInUser = getLoggedInUser();
-    const userName = loggedInUser ? loggedInUser.personalData.name : 'Usuário Desconhecido';
-
     return (
         <>
-            {showHeaderFooter ? <Header /> : <HeaderLogged userName={userName} />}
+            {showHeaderFooter ? <Header /> : <HeaderLogged />}
             {children}
             {showHeaderFooter && <Footer />}
         </>
