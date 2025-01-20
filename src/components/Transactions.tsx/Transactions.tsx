@@ -35,8 +35,6 @@ const Transactions: React.FC<TransactionsProps> = ({ onTransactionComplete }) =>
             return;
         }
 
-        console.log("amount", amount)
-
         const userDataString = sessionStorage.getItem('userData');
         if (!userDataString) {
             console.log('Usuário não encontrado. Por favor, faça o login.');

@@ -1,12 +1,14 @@
 import React, { useState, useEffect, ChangeEvent } from 'react';
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Box, FormControl, InputLabel, Select, MenuItem, TextField, Typography, SelectChangeEvent } from '@mui/material';
-import styles from './EditTransactionalModal.module.scss';
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button } from '@mui/material';
+import { SelectChangeEvent } from '@mui/material/Select';
 import { IEditTransactionModalProps } from '@/src/interfaces/components';
+import { formatCurrency } from '@/src/utils/formatCurrency';
+import TransactionalForm from '../TransactionForm/TransactionalForm';
 
 const EditTransactionModal: React.FC<IEditTransactionModalProps> = ({ open, onClose, onSave, initialType, initialAmount }) => {
-    const [transactionType, setTransactionType] = useState('');
-    const [amountValue, setAmountValue] = useState(initialAmount);
-    const [isValidAmount, setIsValidAmount] = useState(true);
+    const [transactionType, setTransactionType] = useState<string>('');
+    const [amountValue, setAmountValue] = useState<string>(initialAmount);
+    const [isValidAmount, setIsValidAmount] = useState<boolean>(true);
 
     useEffect(() => {
         const formattedType = initialType.toLowerCase() === 'depósito' || initialType.toLowerCase() === 'deposito' ? 'deposito' : 'transferencia';
@@ -19,13 +21,18 @@ const EditTransactionModal: React.FC<IEditTransactionModalProps> = ({ open, onCl
     };
 
     const handleAmountChange = (event: ChangeEvent<HTMLInputElement>) => {
-        setAmountValue(event.target.value);
-        setIsValidAmount(event.target.value !== '0');
+        const inputValue = event.target.value;
+        const formattedAmount = formatCurrency(inputValue);
+
+        setAmountValue(formattedAmount);
+
+        const numericValue = parseFloat(formattedAmount.replace(/\./g, '').replace(',', '.'));
+        setIsValidAmount(numericValue !== 0);
     };
 
     const handleSubmit = () => {
-        if (amountValue === '0') {
-            setIsValidAmount(false);
+        if (!isValidAmount || !amountValue) {
+            console.log('Invalid amount: Value cannot be zero.');
             return;
         }
         const isNegative = transactionType === 'transferencia';
@@ -37,37 +44,17 @@ const EditTransactionModal: React.FC<IEditTransactionModalProps> = ({ open, onCl
         <Dialog open={open} onClose={onClose}>
             <DialogTitle>Editar Transação</DialogTitle>
             <DialogContent>
-                <Box className={styles.inputWrapper}>
-                    <InputLabel className={styles.customLabel}>Selecione o tipo de transação</InputLabel>
-                    <FormControl variant="outlined" margin="normal" className={styles.dropdown}>
-                        <Select
-                            value={transactionType}
-                            onChange={handleTypeChange}
-                            className={styles.customInput}
-                        >
-                            <MenuItem value="deposito">Depósito</MenuItem>
-                            <MenuItem value="transferencia">Transferência</MenuItem>
-                        </Select>
-                    </FormControl>
-                </Box>
-                <Box className={styles.inputWrapper}>
-                    <InputLabel className={styles.customLabel}>Valor</InputLabel>
-                    <FormControl margin="normal" className={styles.input}>
-                        <TextField
-                            value={amountValue}
-                            onChange={handleAmountChange}
-                            variant="outlined"
-                            placeholder="00,00"
-                            className={`${styles.customInput} ${!isValidAmount ? styles.invalidInput : ''}`}
-                            error={!isValidAmount}
-                        />
-                        {!isValidAmount && <Typography variant="body2" className={styles.errorMessage}>O valor não pode ser zero</Typography>}
-                    </FormControl>
-                </Box>
+                <TransactionalForm
+                    transactionType={transactionType}
+                    amount={amountValue}
+                    isValidAmount={isValidAmount}
+                    handleTypeChange={handleTypeChange}
+                    handleAmountChange={handleAmountChange}
+                    handleSubmit={handleSubmit}
+                />
             </DialogContent>
             <DialogActions>
                 <Button onClick={onClose} color="primary">Cancelar</Button>
-                <Button onClick={handleSubmit} color="secondary">Salvar alterações</Button>
             </DialogActions>
         </Dialog>
     );
