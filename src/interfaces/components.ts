@@ -60,3 +60,14 @@ export interface IEditTransactionModalProps {
     initialAmount: string;
 }
 
+export interface ITransactionDetailsModalProps {
+    open: boolean;
+    onClose: () => void;
+    transaction: {
+        type: string;
+        amount: string;
+        date: string;
+        author: string;
+    };
+}
+

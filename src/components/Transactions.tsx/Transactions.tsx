@@ -45,7 +45,7 @@ const Transactions: React.FC<TransactionsProps> = ({ onTransactionComplete }) =>
 
         const newTransaction: ITransactionItemProps = {
             month: "Janeiro",
-            date: new Date().toLocaleDateString('pt-BR'),
+            date: new Date().toISOString(),
             type: transactionType === 'deposito' ? 'Depósito' : 'Transferência',
             amount: amount.replace('R$', '').trim(),
             isNegative: transactionType !== 'deposito',

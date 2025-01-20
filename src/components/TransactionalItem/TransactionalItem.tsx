@@ -7,10 +7,14 @@ import styles from './TransactionalItem.module.scss';
 import { ITransactionItemWithActionsProps } from "@/src/interfaces/components";
 import ConfirmationModal from "../ConfirmationModal/ConfirmatinModa";
 import EditTransactionModal from "../EditTransactionalModal/EditTransactionalModal";
+import { formatDateWithoutWeekday } from '@/src/utils/formatDate';
+import TransactionDetailsModal from "../TransactionalDetailsModal/TransactionalDetailsModal";
+import { getLoggedInUser } from "@/src/utils/getLoggedUser";
 
 const TransactionItem: React.FC<ITransactionItemWithActionsProps> = ({ month, date, type, amount, isNegative, onDelete, index, onSave }) => {
     const [open, setOpen] = useState(false);
     const [editOpen, setEditOpen] = useState(false);
+    const [detailsOpen, setDetailsOpen] = useState(false);
     const [transactionType, setTransactionType] = useState('');
     const [transactionAmount, setTransactionAmount] = useState('');
 
@@ -29,9 +33,11 @@ const TransactionItem: React.FC<ITransactionItemWithActionsProps> = ({ month, da
 
     const handleEditOpen = () => {
         const formattedType = type.toLowerCase() === 'depósito' || type.toLowerCase() === 'deposito' ? 'deposito' : 'transferencia';
+        const formattedAmount = amount.includes('R$') ? amount : `R$ ${amount}`;
 
         setTransactionType(formattedType);
-        setTransactionAmount(amount);
+        setTransactionAmount(formattedAmount);
+
         setEditOpen(true);
     };
 
@@ -46,6 +52,26 @@ const TransactionItem: React.FC<ITransactionItemWithActionsProps> = ({ month, da
         handleEditClose();
     };
 
+    const handleDetailsOpen = () => {
+        setDetailsOpen(true);
+    };
+
+    const handleDetailsClose = () => {
+        setDetailsOpen(false);
+    };
+
+    // Converte a string de data em objeto Date e formata para exibição
+    const formattedDate = formatDateWithoutWeekday(new Date(date));
+
+    const loggedInUser = getLoggedInUser();
+    const author = loggedInUser ? loggedInUser.personalData.name : 'Usuário Desconhecido';
+
+    const transactionDetails = {
+        type,
+        amount: isNegative ? `-R$ ${amount}` : `R$ ${amount}`,
+        date,
+        author: author
+    };
     return (
         <Box className={styles.transactionBox}>
             <Box className={styles.transactionHeader}>
@@ -53,7 +79,7 @@ const TransactionItem: React.FC<ITransactionItemWithActionsProps> = ({ month, da
                     {month}
                 </Typography>
                 <Typography variant="body2" className={styles.date}>
-                    {date}
+                    {formattedDate}
                 </Typography>
             </Box>
             <Typography variant="body1" className={isNegative ? styles.withdrawal : styles.deposit}>
@@ -64,7 +90,7 @@ const TransactionItem: React.FC<ITransactionItemWithActionsProps> = ({ month, da
             </Typography>
             <div className={styles.underline}></div>
             <Box className={styles.actionIcons}>
-                <IconButton size="small" onClick={handleOpen}>
+                <IconButton size="small" onClick={handleDetailsOpen}>
                     <VisibilityIcon className={styles.icon} />
                 </IconButton>
                 <IconButton size="small" onClick={handleEditOpen}>
@@ -81,6 +107,11 @@ const TransactionItem: React.FC<ITransactionItemWithActionsProps> = ({ month, da
                 onSave={handleSave}
                 initialType={transactionType}
                 initialAmount={transactionAmount}
+            />
+            <TransactionDetailsModal
+                open={detailsOpen}
+                onClose={handleDetailsClose}
+                transaction={transactionDetails}
             />
         </Box>
     );

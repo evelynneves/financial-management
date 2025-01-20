@@ -32,28 +32,28 @@ const LoginModal: React.FC<IHomeModalProps> = ({ open, handleClose }) => {
                     transactions: [
                         {
                             month: "Novembro",
-                            date: "18/11/2024",
+                            date: "2024-11-18T00:00:00.000Z",
                             type: "Depósito",
                             amount: "150",
                             isNegative: false,
                         },
                         {
                             month: "Novembro",
-                            date: "21/11/2024",
+                            date: "2024-11-21T00:00:00.000Z",
                             type: "Depósito",
                             amount: "100",
                             isNegative: false,
                         },
                         {
                             month: "Novembro",
-                            date: "21/11/2024",
+                            date: "2024-11-21T00:00:00.000Z",
                             type: "Depósito",
                             amount: "50",
                             isNegative: false,
                         },
                         {
                             month: "Novembro",
-                            date: "21/11/2024",
+                            date: "2024-11-21T00:00:00.000Z",
                             type: "Transferência",
                             amount: "500",
                             isNegative: true,
