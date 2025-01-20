@@ -111,6 +111,7 @@ const HeaderLogged: React.FC = () => {
                     }}
                     open={Boolean(anchorEl)}
                     onClose={handleClose}
+                    className={styles.menu}
                 >
                     <MenuItem onClick={handleClose}>Minha conta</MenuItem>
                     <MenuItem onClick={handleClose}>Configurações</MenuItem>
@@ -121,14 +122,15 @@ const HeaderLogged: React.FC = () => {
                 anchor="left"
                 open={drawerOpen}
                 onClose={toggleDrawer(false)}
+                className={styles.drawerContent}
+                sx={{
+                    '& .MuiDrawer-paper': {
+                        height: 'auto',
+                    },
+                }}
             >
                 <Box
-                    sx={{
-                        textAlign: "right",
-                        padding: 2,
-                        backgroundColor: "#004d61",
-                    }}
-                >
+                    sx={{textAlign: "right", backgroundColor: '#E4EDE3'}}>
                     <IconButton
                         onClick={toggleDrawer(false)}
                         style={{ color: "#47a138" }}

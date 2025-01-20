@@ -4,6 +4,7 @@ import { SelectChangeEvent } from '@mui/material/Select';
 import { IEditTransactionModalProps } from '@/src/interfaces/components';
 import { formatCurrency } from '@/src/utils/formatCurrency';
 import TransactionalForm from '../TransactionForm/TransactionalForm';
+import styles from './EditTransactionalModal.module.scss';
 
 const EditTransactionModal: React.FC<IEditTransactionModalProps> = ({ open, onClose, onSave, initialType, initialAmount }) => {
     const [transactionType, setTransactionType] = useState<string>('');
@@ -41,9 +42,9 @@ const EditTransactionModal: React.FC<IEditTransactionModalProps> = ({ open, onCl
     };
 
     return (
-        <Dialog open={open} onClose={onClose}>
-            <DialogTitle>Editar Transação</DialogTitle>
-            <DialogContent>
+        <Dialog open={open} onClose={onClose} className={styles.dialogContainer} disableScrollLock>
+            <DialogTitle className={styles.dialogTitle}>Editar Transação</DialogTitle>
+            <DialogContent className={styles.dialogContent}>
                 <TransactionalForm
                     transactionType={transactionType}
                     amount={amountValue}
@@ -51,10 +52,12 @@ const EditTransactionModal: React.FC<IEditTransactionModalProps> = ({ open, onCl
                     handleTypeChange={handleTypeChange}
                     handleAmountChange={handleAmountChange}
                     handleSubmit={handleSubmit}
+                    hideSubmitButton={true}
                 />
             </DialogContent>
-            <DialogActions>
-                <Button onClick={onClose} color="primary">Cancelar</Button>
+            <DialogActions className={styles.containerButton}>
+                <Button onClick={onClose} className={styles.cancelButton}>Cancelar</Button>
+                <Button onClick={handleSubmit} className={styles.saveButton}>Salvar</Button>
             </DialogActions>
         </Dialog>
     );

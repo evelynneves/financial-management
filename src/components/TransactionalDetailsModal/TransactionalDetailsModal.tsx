@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, Typography } from '@mui/material';
+import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField } from '@mui/material';
 import styles from './TransactionalDetailsModal.module.scss';
 import { ITransactionDetailsModalProps } from '@/src/interfaces/components';
 
@@ -7,24 +7,56 @@ const TransactionDetailsModal: React.FC<ITransactionDetailsModalProps> = ({ open
     const { type, amount, date, author } = transaction;
 
     return (
-        <Dialog open={open} onClose={onClose}>
-            <DialogTitle>Detalhes da Transação</DialogTitle>
-            <DialogContent>
-                <Typography variant="body1" className={styles.detailItem}>
-                    <strong>Tipo de Transação:</strong> {type}
-                </Typography>
-                <Typography variant="body1" className={styles.detailItem}>
-                    <strong>Valor:</strong> {amount}
-                </Typography>
-                <Typography variant="body1" className={styles.detailItem}>
-                    <strong>Data:</strong> {new Date(date).toLocaleString('pt-BR')}
-                </Typography>
-                <Typography variant="body1" className={styles.detailItem}>
-                    <strong>Autor:</strong> {author}
-                </Typography>
+        <Dialog open={open} onClose={onClose} className={styles.dialogContainer} disableScrollLock>
+            <DialogTitle className={styles.dialogTitle}>Detalhes da Transação</DialogTitle>
+            <DialogContent className={styles.dialogContent}>
+                <TextField
+                    label="Tipo de Transação"
+                    value={type}
+                    variant="outlined"
+                    className={styles.inputField}
+                    slotProps={{
+                        input: {
+                            readOnly: true,
+                        },
+                    }}
+                />
+                <TextField
+                    label="Valor"
+                    value={amount}
+                    variant="outlined"
+                    className={styles.inputField}
+                    slotProps={{
+                        input: {
+                            readOnly: true,
+                        },
+                    }}
+                />
+                <TextField
+                    label="Data"
+                    value={new Date(date).toLocaleString('pt-BR')}
+                    variant="outlined"
+                    className={styles.inputField}
+                    slotProps={{
+                        input: {
+                            readOnly: true,
+                        },
+                    }}
+                />
+                <TextField
+                    label="Autor"
+                    value={author}
+                    variant="outlined"
+                    className={styles.inputField}
+                    slotProps={{
+                        input: {
+                            readOnly: true,
+                        },
+                    }}
+                />
             </DialogContent>
-            <DialogActions>
-                <Button onClick={onClose} color="primary">Fechar</Button>
+            <DialogActions className={styles.containerButton}>
+                <Button onClick={onClose} className={styles.closeButton}>Fechar</Button>
             </DialogActions>
         </Dialog>
     );

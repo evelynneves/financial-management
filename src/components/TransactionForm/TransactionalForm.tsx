@@ -3,7 +3,7 @@ import { Box, FormControl, InputLabel, Select, MenuItem, TextField, Typography, 
 import styles from './TransactionalForm.module.scss';
 import { ITransactionalFormProps } from '@/src/interfaces/components';
 
-const TransactionalForm: React.FC<ITransactionalFormProps> = ({ transactionType, amount, isValidAmount, handleTypeChange, handleAmountChange, handleSubmit }) => {
+const TransactionalForm: React.FC<ITransactionalFormProps> = ({ transactionType, amount, isValidAmount, handleTypeChange, handleAmountChange, handleSubmit, hideSubmitButton = false }) => {
     return (
         <div className={styles.transactionalFormContainer}>
             <Box className={styles.inputWrapper}>
@@ -33,9 +33,11 @@ const TransactionalForm: React.FC<ITransactionalFormProps> = ({ transactionType,
                     {!isValidAmount && <Typography variant="body2" className={styles.errorMessage}>O valor não pode ser zero</Typography>}
                 </FormControl>
             </Box>
-            <Button variant="contained" className={styles.submitButton} onClick={handleSubmit}>
-                Concluir transação
-            </Button>
+            {!hideSubmitButton && (
+                <Button variant="contained" className={styles.submitButton} onClick={handleSubmit}>
+                    Concluir transação
+                </Button>
+            )}
         </div>
     );
 };

@@ -21,6 +21,11 @@
     }
 
     .backButton {
+        text-transform: none;
         background-color: #FF5031;
+
+        &:hover {
+            background-color: #E94B2E;
+        }
     }
 }

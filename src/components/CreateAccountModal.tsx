@@ -83,6 +83,7 @@ const CreateAccountModal: React.FC<IHomeModalProps> = ({
             buttonText="Criar conta"
             onSubmit={handleSubmit}
             isFormValid={isFormValid}
+            buttonColor="#FF5031"
         >
             <TextField
                 name="name"

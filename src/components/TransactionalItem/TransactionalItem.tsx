@@ -33,10 +33,9 @@ const TransactionItem: React.FC<ITransactionItemWithActionsProps> = ({ month, da
 
     const handleEditOpen = () => {
         const formattedType = type.toLowerCase() === 'depósito' || type.toLowerCase() === 'deposito' ? 'deposito' : 'transferencia';
-        const formattedAmount = amount.includes('R$') ? amount : `R$ ${amount}`;
 
         setTransactionType(formattedType);
-        setTransactionAmount(formattedAmount);
+        setTransactionAmount(amount);
 
         setEditOpen(true);
     };

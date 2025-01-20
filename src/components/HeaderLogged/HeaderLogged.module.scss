@@ -3,7 +3,7 @@
     justify-content: flex-end;
     background-color: #004d61;
     width: 100%;
-    padding: 0 300px;
+    padding: 0 40px;
     align-items: center;
 }
 
@@ -17,6 +17,20 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
+}
+
+.menu {
+    ul {
+        background-color: #000000;
+        color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        li:hover {
+            color: #47a138;
+        }
+    }   
 }
 
 @media (max-width: 720px) {

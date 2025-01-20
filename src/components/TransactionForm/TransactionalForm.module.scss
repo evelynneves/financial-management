@@ -35,11 +35,10 @@
     }
     
     .customInput .MuiOutlinedInput-root {
-        background-color: #ffffff; /* Cor de fundo */
-        color: #444444; /* Cor do texto */
+        background-color: #ffffff;
+        color: #444444;
     }
     
-    /* Estilo para o hover e focus das bordas do Select e TextField */
     .customInput .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline,
     .customInput .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
         border-color: #004D61 !important;

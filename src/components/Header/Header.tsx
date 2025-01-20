@@ -45,21 +45,26 @@ const Header: React.FC = () => {
             <a href="#" aria-label="About">Sobre</a>
             <a href="#" aria-label="Services">Serviços</a>
             <div className={styles.buttonContainer}>
-            <Button variant="contained" className={styles.primaryButton} onClick={handleCreateAccountModalOpen}>Abrir conta</Button>
-            <Button variant="outlined" className={styles.primaryButton} onClick={handleLoginModalOpen}>Já tenho conta</Button>
+                <Button variant="contained" className={styles.containedButton} onClick={handleCreateAccountModalOpen}>Abrir conta</Button>
+                <Button variant="outlined" className={styles.outlinedButton} onClick={handleLoginModalOpen}>Já tenho conta</Button>
             </div>
         </nav>
-        <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
-            <Box sx={{ textAlign: 'right', padding: 2, backgroundColor: '#004d61' }}>
+        <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)} className={styles.drawerContainer}
+                        sx={{
+                            '& .MuiDrawer-paper': {
+                                height: 'auto',
+                            },
+                        }}>
+            <Box sx={{ textAlign: 'right', backgroundColor: '#E4EDE3' }}>
                 <IconButton onClick={toggleDrawer(false)} style={{ color: '#47a138' }}>
                     <CloseIcon />
                 </IconButton>
             </Box>
             <List className={styles.drawerContent}>
-                <ListItem component="a" href="#">
+                <ListItem component="a" href="#" className={styles.drawerItem}>
                     <ListItemText primary="Sobre" />
                 </ListItem>
-                <ListItem component="a" href="#">
+                <ListItem component="a" href="#" className={styles.drawerItem}>
                     <ListItemText primary="Serviços" />
                 </ListItem>
             </List>

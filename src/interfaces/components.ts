@@ -10,6 +10,7 @@ export interface IGenericModalProps {
     buttonText: string;
     onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
     isFormValid: boolean;
+    buttonColor?: string;
 }
 
 export type IHomeModalProps = Pick<IGenericModalProps, "open" | "handleClose">;
@@ -50,6 +51,7 @@ export interface ITransactionalFormProps {
     handleTypeChange: (event: SelectChangeEvent<string>) => void;
     handleAmountChange: (event: ChangeEvent<HTMLInputElement>) => void;
     handleSubmit: () => void;
+    hideSubmitButton?: boolean;
 }
 
 export interface IEditTransactionModalProps {

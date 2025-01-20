@@ -13,6 +13,7 @@ const GenericModal: React.FC<IGenericModalProps> = ({
     buttonText,
     onSubmit,
     isFormValid,
+    buttonColor = "#47A138",
 }) => {
     return (
         <Modal open={open} onClose={handleClose} disableScrollLock>
@@ -35,7 +36,7 @@ const GenericModal: React.FC<IGenericModalProps> = ({
                         display: "flex",
                         flexDirection: "column",
                         alignItems: "center",
-                        overflowY: ["auto", "visible"],
+                        overflowY: ["auto"],
                         position: "relative",
                     }}
                 >
@@ -71,8 +72,15 @@ const GenericModal: React.FC<IGenericModalProps> = ({
                             variant="contained"
                             type="submit"
                             fullWidth
-                            sx={{ mt: 2 }}
+                            sx={{
+                                mt: 2,
+                                backgroundColor: buttonColor,
+                                "&:hover": {
+                                    backgroundColor: `${buttonColor}CC`,
+                                },
+                            }}
                             disabled={!isFormValid}
+                            
                         >
                             {buttonText}
                         </Button>

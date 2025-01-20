@@ -170,11 +170,11 @@ const Services = () => {
                                 >
                                     {showBalance ? (
                                         <VisibilityIcon
-                                            className={styles.eyeIcon}
+                                            className={styles.visibleIcon}
                                         />
                                     ) : (
                                         <VisibilityOffIcon
-                                            className={styles.eyeIcon}
+                                            className={styles.visibleIcon}
                                         />
                                     )}
                                 </IconButton>

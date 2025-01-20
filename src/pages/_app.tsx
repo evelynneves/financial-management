@@ -12,11 +12,6 @@ import HeaderLogged from "../components/HeaderLogged/HeaderLogged";
 import { MenuProvider } from "../contexts/MenuContext";
 
 const theme = createTheme({
-    palette: {
-        primary: {
-            main: "#004D61",
-        },
-    },
     components: {
         MuiOutlinedInput: {
             styleOverrides: {
