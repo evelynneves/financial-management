@@ -41,6 +41,11 @@ const Services = () => {
         }
     }, []);
 
+    useEffect(() => {
+        setShowCards(false);
+    }, [selectedMenuItem]);
+    
+
     const calculateBalance = (transactions: ITransactionItemProps[]): number => {
         return transactions.reduce((total, transaction) => {
             const amount = parseFloat(transaction.amount);
@@ -60,7 +65,7 @@ const Services = () => {
         if (showCards) {
             return <ManageCards />;
         }
-
+    
         switch (selectedMenuItem) {
             case "Início":
                 return <Transactions onTransactionComplete={handleTransactionComplete} />;

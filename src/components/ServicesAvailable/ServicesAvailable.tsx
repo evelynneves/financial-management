@@ -1,8 +1,9 @@
 import React from 'react';
 import { Typography, Box } from '@mui/material';
 import styles from './ServicesAvailable.module.scss';
+import { IServicesAvailableProps } from '@/src/interfaces/components';
 
-const ServicesAvailable = ({ onCardClick }) => {
+const ServicesAvailable: React.FC<IServicesAvailableProps> = ({ onCardClick }) => {
     return (
         <Box>
             <Typography variant="h6" gutterBottom className={styles.servicesTitle}>

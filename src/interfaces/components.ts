@@ -32,13 +32,18 @@ export interface ITransactionItemProps {
     isNegative: boolean;
 }
 
-export interface ITransactionItemWithActionsProps extends ITransactionItemProps {
+export interface ITransactionItemWithActionsProps
+    extends ITransactionItemProps {
     onDelete: () => void;
-    onSave: (index: number, type: string, amount: string, isNegative: boolean) => void;
+    onSave: (
+        index: number,
+        type: string,
+        amount: string,
+        isNegative: boolean
+    ) => void;
     index: number;
     hideActions?: boolean;
 }
-
 
 export interface IMenuListProps {
     selectedMenuItem: string;
@@ -74,3 +79,6 @@ export interface ITransactionDetailsModalProps {
     };
 }
 
+export interface IServicesAvailableProps {
+    onCardClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+}
