@@ -31,7 +31,12 @@ export interface ITransactionItemProps {
     isNegative: boolean;
 }
 
-export interface ITransactionItemWithActionsProps extends ITransactionItemProps { onDelete: () => void; }
+export interface ITransactionItemWithActionsProps extends ITransactionItemProps {
+    onDelete: () => void;
+    onSave: (index: number, type: string, amount: string, isNegative: boolean) => void;
+    index: number;
+}
+
 
 export interface IMenuListProps {
     selectedMenuItem: string;
@@ -50,7 +55,7 @@ export interface ITransactionalFormProps {
 export interface IEditTransactionModalProps {
     open: boolean;
     onClose: () => void;
-    onSave: (type: string, amount: string) => void;
+    onSave: (type: string, amount: string, isNegative: boolean) => void;
     initialType: string;
     initialAmount: string;
 }

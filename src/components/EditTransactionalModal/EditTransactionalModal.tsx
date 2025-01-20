@@ -28,7 +28,8 @@ const EditTransactionModal: React.FC<IEditTransactionModalProps> = ({ open, onCl
             setIsValidAmount(false);
             return;
         }
-        onSave(transactionType, amountValue);
+        const isNegative = transactionType === 'transferencia';
+        onSave(transactionType, amountValue, isNegative);
         onClose();
     };
 

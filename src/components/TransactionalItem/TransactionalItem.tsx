@@ -8,7 +8,7 @@ import { ITransactionItemWithActionsProps } from "@/src/interfaces/components";
 import ConfirmationModal from "../ConfirmationModal/ConfirmatinModa";
 import EditTransactionModal from "../EditTransactionalModal/EditTransactionalModal";
 
-const TransactionItem: React.FC<ITransactionItemWithActionsProps> = ({ month, date, type, amount, isNegative, onDelete }) => {
+const TransactionItem: React.FC<ITransactionItemWithActionsProps> = ({ month, date, type, amount, isNegative, onDelete, index, onSave }) => {
     const [open, setOpen] = useState(false);
     const [editOpen, setEditOpen] = useState(false);
     const [transactionType, setTransactionType] = useState('');
@@ -25,14 +25,13 @@ const TransactionItem: React.FC<ITransactionItemWithActionsProps> = ({ month, da
     const handleConfirm = () => {
         onDelete();
         handleClose();
-    }
+    };
 
     const handleEditOpen = () => {
         const formattedType = type.toLowerCase() === 'depósito' || type.toLowerCase() === 'deposito' ? 'deposito' : 'transferencia';
-        const formattedAmount = amount.includes('R$') ? amount : `R$ ${amount}`;
 
         setTransactionType(formattedType);
-        setTransactionAmount(formattedAmount);
+        setTransactionAmount(amount);
         setEditOpen(true);
     };
 
@@ -40,23 +39,11 @@ const TransactionItem: React.FC<ITransactionItemWithActionsProps> = ({ month, da
         setEditOpen(false);
     };
 
-    const handleSave = (newType: string, newAmount: string) => {
-        const userDataString = sessionStorage.getItem('userData');
-        if (!userDataString) {
-            console.log('Usuário não encontrado. Por favor, faça o login.');
-            return;
-        }
-
-        const userData = JSON.parse(userDataString);
-        const updatedTransactions = userData.transactions.map(transaction => {
-            if (transaction.date === date && transaction.amount === amount && transaction.type === type) {
-                return { ...transaction, type: newType, amount: newAmount };
-            }
-            return transaction;
-        });
-
-        userData.transactions = updatedTransactions;
-        sessionStorage.setItem('userData', JSON.stringify(userData));
+    const handleSave = (newType: string, newAmount: string, isNegative: boolean) => {
+        const formattedType = newType === 'deposito' ? 'Depósito' : 'Transferência';
+        const formattedAmount = newAmount.replace('R$', '').trim();
+        onSave(index, formattedType, formattedAmount, isNegative);
+        handleEditClose();
     };
 
     return (

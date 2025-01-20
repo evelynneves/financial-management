@@ -76,6 +76,22 @@ const Services = () => {
         });
     };
 
+    const handleSaveTransaction = (index: number, newType: string, newAmount: string, isNegative: boolean) => {
+        setTransactions((prevTransactions) => {
+            const updatedTransactions = [...prevTransactions];
+            updatedTransactions[index] = { ...updatedTransactions[index], type: newType, amount: newAmount, isNegative };
+
+            const storedUserData = sessionStorage.getItem('userData');
+            if (storedUserData) {
+                const userData: IUserData = JSON.parse(storedUserData);
+                userData.transactions = updatedTransactions;
+                sessionStorage.setItem('userData', JSON.stringify(userData));
+            }
+
+            return updatedTransactions;
+        });
+    };
+
     const today = new Date();
     const formattedDate = formatDate(today);
 
@@ -165,6 +181,8 @@ const Services = () => {
                             amount={transaction.amount}
                             isNegative={transaction.isNegative}
                             onDelete={() => handleDeleteTransaction(index)}
+                            index={index}
+                            onSave={handleSaveTransaction}
                         />
                     ))}
                 </Sidebar>
