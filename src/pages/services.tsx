@@ -15,20 +15,31 @@ import ManageCards from "../components/ManageCards/ManageCards";
 import Transactions from "../components/Transactions.tsx/Transactions";
 import { ITransactionItemProps } from "../interfaces/components";
 import { IUserData } from "../interfaces/auth";
+import { getLoggedInUser } from "@/src/utils/getLoggedUser";
 
 const Services = () => {
     const { selectedMenuItem, setSelectedMenuItem } = useMenu();
     const [showBalance, setShowBalance] = useState(true);
     const [showCards, setShowCards] = useState(false);
     const [transactions, setTransactions] = useState<ITransactionItemProps[]>([]);
+    const [balance, setBalance] = useState(0);
 
     useEffect(() => { 
         const storedUserData = sessionStorage.getItem('userData');
         if (storedUserData) { 
             const userData: IUserData = JSON.parse(storedUserData);
-            setTransactions(userData.transactions); 
+            setTransactions(userData.transactions);
+            const calculatedBalance = calculateBalance(userData.transactions);
+            setBalance(calculatedBalance);
         }
     }, []);
+
+    const calculateBalance = (transactions: ITransactionItemProps[]): number => {
+        return transactions.reduce((total, transaction) => {
+            const amount = parseFloat(transaction.amount);
+            return transaction.isNegative ? total - amount : total + amount;
+        }, 0);
+    };
 
     const toggleBalanceVisibility = () => {
         setShowBalance(!showBalance);
@@ -58,13 +69,19 @@ const Services = () => {
     };
 
     const handleTransactionComplete = (transaction: ITransactionItemProps) => {
-        setTransactions((prevTransactions) => [transaction, ...prevTransactions]);
+        setTransactions((prevTransactions) => {
+            const updatedTransactions = [transaction, ...prevTransactions];
+            const newBalance = calculateBalance(updatedTransactions);
+            setBalance(newBalance);
+            return updatedTransactions;
+        });
     };
 
     const handleDeleteTransaction = (index: number) => {
         setTransactions((prevTransactions) => {
             const updatedTransactions = [...prevTransactions];
             updatedTransactions.splice(index, 1);
+            const newBalance = calculateBalance(updatedTransactions);
 
             const storedUserData = sessionStorage.getItem('userData');
             if (storedUserData) {
@@ -72,6 +89,8 @@ const Services = () => {
                 userData.transactions = updatedTransactions;
                 sessionStorage.setItem('userData', JSON.stringify(userData));
             }
+
+            setBalance(newBalance);
             return updatedTransactions;
         });
     };
@@ -88,12 +107,17 @@ const Services = () => {
                 sessionStorage.setItem('userData', JSON.stringify(userData));
             }
 
+            const newBalance = calculateBalance(updatedTransactions);
+            setBalance(newBalance);
             return updatedTransactions;
         });
     };
 
     const today = new Date();
     const formattedDate = formatDate(today);
+
+    const loggedInUser = getLoggedInUser();
+    const firstName = loggedInUser ? loggedInUser.personalData.name.split(' ')[0] : 'Usuário';
 
     return (
         <Container className={styles.container} maxWidth={false}>
@@ -119,7 +143,7 @@ const Services = () => {
                                 variant="h5"
                                 className={styles.greeting}
                             >
-                                Olá, Evy! :)
+                                Olá, {firstName}! :)
                             </Typography>
                             <Typography
                                 variant="subtitle1"
@@ -162,7 +186,7 @@ const Services = () => {
                                 variant="h4"
                                 className={styles.balanceAmount}
                             >
-                                {showBalance ? "R$ 2.500,00" : "******"}
+                                {showBalance ? `R$ ${balance.toFixed(2)}` : "******"}
                             </Typography>
                         </Box>
                         <Box className={styles.topSectionRow3}></Box>

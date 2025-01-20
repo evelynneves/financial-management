@@ -60,9 +60,7 @@ const TransactionItem: React.FC<ITransactionItemWithActionsProps> = ({ month, da
         setDetailsOpen(false);
     };
 
-    // Converte a string de data em objeto Date e formata para exibição
     const formattedDate = formatDateWithoutWeekday(new Date(date));
-
     const loggedInUser = getLoggedInUser();
     const author = loggedInUser ? loggedInUser.personalData.name : 'Usuário Desconhecido';
 
