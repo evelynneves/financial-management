@@ -1,12 +1,89 @@
-import React from "react";
-import { Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Typography, Box } from "@mui/material";
+import styles from "./Transfers.module.scss";
+import { ITransactionItemProps } from "../../interfaces/components";
+import TransactionItem from "../TransactionalItem/TransactionalItem";
+import { IUserData } from "@/src/interfaces/auth";
 
-const Transferencias = () => {
+const Transfers = () => {
+    const [transactions, setTransactions] = useState<ITransactionItemProps[]>(
+        []
+    );
+
+    useEffect(() => {
+        // Simular fetch das transferências armazenadas
+        if (typeof window !== "undefined") {
+            const storedUserData = sessionStorage.getItem("userData");
+            if (storedUserData) {
+                const userData = JSON.parse(storedUserData);
+                setTransactions(userData.transactions);
+            }
+        }
+    }, []);
+
+    const handleSaveTransaction = (
+        index: number,
+        newType: string,
+        newAmount: string,
+        isNegative: boolean
+    ) => {
+        setTransactions((prevTransactions) => {
+            const updatedTransactions = [...prevTransactions];
+            updatedTransactions[index] = {
+                ...updatedTransactions[index],
+                type: newType,
+                amount: newAmount,
+                isNegative,
+            };
+
+            const storedUserData = sessionStorage.getItem("userData");
+            if (storedUserData) {
+                const userData: IUserData = JSON.parse(storedUserData);
+                userData.transactions = updatedTransactions;
+                sessionStorage.setItem("userData", JSON.stringify(userData));
+            }
+
+            return updatedTransactions;
+        });
+    };
+
+    const handleDeleteTransaction = (index: number) => {
+        setTransactions((prevTransactions) => {
+            const updatedTransactions = [...prevTransactions];
+            updatedTransactions.splice(index, 1);
+            const storedUserData = sessionStorage.getItem("userData");
+            if (storedUserData) {
+                const userData = JSON.parse(storedUserData);
+                userData.transactions = updatedTransactions;
+                sessionStorage.setItem("userData", JSON.stringify(userData));
+            }
+            return updatedTransactions;
+        });
+    };
+
     return (
-        <Typography variant="h6">
-            Aqui você pode fazer transferências.
-        </Typography>
+        <Box className={styles.transferContainer}>
+            <Typography variant="h6" className={styles.title}>
+                Lista de Transferências
+            </Typography>
+            <Box className={styles.transferList}>
+                {transactions.map((transaction, index) => (
+                    <TransactionItem
+                        key={index}
+                        month={transaction.month}
+                        date={transaction.date}
+                        type={transaction.type}
+                        amount={transaction.amount}
+                        isNegative={transaction.isNegative}
+                        onDelete={() => handleDeleteTransaction(index)}
+                        index={index}
+                        onSave={handleSaveTransaction}
+                        hideActions={true}
+                    />
+                ))}
+            </Box>
+        </Box>
     );
 };
 
-export default Transferencias;
+export default Transfers;

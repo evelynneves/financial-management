@@ -4,7 +4,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import { formatDate } from "../utils/formatDate";
 import styles from "../styles/services.module.scss";
-import Transferencias from "../components/Transfers/Transfer";
+import Transfers from "../components/Transfers/Transfer";
 import Investments from "../components/Investments/Investments";
 import TransactionItem from "../components/TransactionalItem/TransactionalItem";
 import MenuList from "../components/MenuList/MenuList";
@@ -65,7 +65,7 @@ const Services = () => {
             case "Início":
                 return <Transactions onTransactionComplete={handleTransactionComplete} />;
             case "Transferências":
-                return <Transferencias />;
+                return <Transfers />;
             case "Investimentos":
                 return <Investments />;
             case "Outros serviços":

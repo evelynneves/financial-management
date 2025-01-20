@@ -5,13 +5,13 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import styles from './TransactionalItem.module.scss';
 import { ITransactionItemWithActionsProps } from "@/src/interfaces/components";
+import { formatDateWithoutWeekday } from '@/src/utils/formatDate';
+import { getLoggedInUser } from "@/src/utils/getLoggedUser";
 import ConfirmationModal from "../ConfirmationModal/ConfirmatinModa";
 import EditTransactionModal from "../EditTransactionalModal/EditTransactionalModal";
-import { formatDateWithoutWeekday } from '@/src/utils/formatDate';
 import TransactionDetailsModal from "../TransactionalDetailsModal/TransactionalDetailsModal";
-import { getLoggedInUser } from "@/src/utils/getLoggedUser";
 
-const TransactionItem: React.FC<ITransactionItemWithActionsProps> = ({ month, date, type, amount, isNegative, onDelete, index, onSave }) => {
+const TransactionItem: React.FC<ITransactionItemWithActionsProps> = ({ month, date, type, amount, isNegative, onDelete, index, onSave, hideActions }) => {
     const [open, setOpen] = useState(false);
     const [editOpen, setEditOpen] = useState(false);
     const [detailsOpen, setDetailsOpen] = useState(false);
@@ -69,6 +69,7 @@ const TransactionItem: React.FC<ITransactionItemWithActionsProps> = ({ month, da
         date,
         author: author
     };
+
     return (
         <Box className={styles.transactionBox}>
             <Box className={styles.transactionHeader}>
@@ -86,17 +87,19 @@ const TransactionItem: React.FC<ITransactionItemWithActionsProps> = ({ month, da
                 {isNegative ? `-R$ ${amount}` : `R$ ${amount}`}
             </Typography>
             <div className={styles.underline}></div>
-            <Box className={styles.actionIcons}>
-                <IconButton size="small" onClick={handleDetailsOpen}>
-                    <VisibilityIcon className={styles.icon} />
-                </IconButton>
-                <IconButton size="small" onClick={handleEditOpen}>
-                    <EditIcon className={styles.icon} />
-                </IconButton>
-                <IconButton size="small" onClick={handleOpen}>
-                    <DeleteIcon className={styles.icon} />
-                </IconButton>
-            </Box>
+            {!hideActions && (
+                <Box className={styles.actionIcons}>
+                    <IconButton size="small" onClick={handleDetailsOpen}>
+                        <VisibilityIcon className={styles.icon} />
+                    </IconButton>
+                    <IconButton size="small" onClick={handleEditOpen}>
+                        <EditIcon className={styles.icon} />
+                    </IconButton>
+                    <IconButton size="small" onClick={handleOpen}>
+                        <DeleteIcon className={styles.icon} />
+                    </IconButton>
+                </Box>
+            )}
             <ConfirmationModal open={open} onClose={handleClose} onConfirm={handleConfirm} />
             <EditTransactionModal
                 open={editOpen}

@@ -36,6 +36,7 @@ export interface ITransactionItemWithActionsProps extends ITransactionItemProps 
     onDelete: () => void;
     onSave: (index: number, type: string, amount: string, isNegative: boolean) => void;
     index: number;
+    hideActions?: boolean;
 }
 
 
