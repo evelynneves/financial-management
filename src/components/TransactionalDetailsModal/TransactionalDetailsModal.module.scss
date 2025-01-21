@@ -1,0 +1,60 @@
+/******************************************************************************
+*                                                                             *
+* Creation Date : 23/12/2024                                                  *
+*                                                                             *
+* Property : (c) This program, code or item is the Intellectual Property of   *
+* Evelyn Neves Barreto. Any use or copy of this code is prohibited without    *
+* the express written authorization of Evelyn. All rights reserved.           *
+*                                                                             *
+*******************************************************************************/
+
+.dialogContainer {
+    .dialogTitle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: var(--font-size-subtitle);
+        font-weight: var(--font-weight-bold);
+        color: var(--foreground-color);
+        padding: 20px;
+    }
+
+    .dialogContent {
+        padding-top: 20px !important;
+        padding-bottom: 0;
+    }
+    
+    .inputField {
+        width: 100%;
+        margin-bottom: 15px;
+
+        .MuiOutlinedInput-root {
+            border-radius: var(--border-radius-medium);
+            .MuiOutlinedInput-notchedOutline {
+                border-color: var(--primary-color);
+            }
+        }
+
+        .MuiOutlinedInput-input {
+            color: var(--medium-gray-color);
+            background-color: var(--background-color);
+        }
+    }
+
+    .containerButton {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+    
+    .closeButton {
+        background-color: var(--primary-color);
+        color: var(--white-color);
+        text-transform: none;
+
+        &:hover {
+            background-color: var(--primary-color-hover);
+        }
+    }
+}

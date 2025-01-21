@@ -1,0 +1,92 @@
+/******************************************************************************
+*                                                                             *
+* Creation Date : 23/12/2024                                                  *
+*                                                                             *
+* Property : (c) This program, code or item is the Intellectual Property of   *
+* Evelyn Neves Barreto. Any use or copy of this code is prohibited without    *
+* the express written authorization of Evelyn. All rights reserved.           *
+*                                                                             *
+*******************************************************************************/
+
+.listItem {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 8px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--very-light-gray-color);
+    }
+
+    .listItemContent {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        text-align: center;
+
+        & > * {
+            color: var(--foreground-color);
+        }
+    }
+
+    .underline {
+        width: 100%;
+        height: 1px;
+        background-color: var(--foreground-color);
+        margin-top: 8px;
+    }
+}
+
+.listItem:last-child .underline {
+    display: none;
+}
+
+.itemSelected {
+    .listItemContent > * {
+        color: var(--secondary-color);
+    }
+
+    .underline {
+        background-color: var(--secondary-color);
+    }
+}
+
+@media (min-width: 361px) and (max-width: 720px) {
+    .list {
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
+    }
+
+    .listItemContent {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .underline {
+        display: none;
+    }
+
+    .itemSelected {
+        .underline {
+            display: flex;
+        }
+    }
+
+    .listItem:last-child.itemSelected .underline {
+        display: flex;
+        background-color: var(--secondary-color);
+    }
+}
+
+@media (max-width: 360px) {
+    .list {
+        padding: 0;
+        background-color: var(--background-drawer);
+        width: 170px;
+    }
+}

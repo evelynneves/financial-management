@@ -1,0 +1,111 @@
+/******************************************************************************
+*                                                                             *
+* Creation Date : 23/12/2024                                                  *
+*                                                                             *
+* Property : (c) This program, code or item is the Intellectual Property of   *
+* Evelyn Neves Barreto. Any use or copy of this code is prohibited without    *
+* the express written authorization of Evelyn. All rights reserved.           *
+*                                                                             *
+*******************************************************************************/
+
+.header {
+    width: 100%;
+    padding: 25px 40px;
+    background-color: var(--foreground-color);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+
+    .buttonContainer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        margin-left: 20px;
+
+        button {
+            height: 40px;
+            width: 130px;
+            text-transform: none;
+        }
+    }
+
+    .containedButton {
+        background-color: var(--secondary-color);
+
+        &:hover {
+            background-color: var(--secondary-color-hover);
+        }
+    }
+
+    .outlinedButton {
+        border: 1px solid var(--secondary-color);
+        color: var(--secondary-color);
+
+        &:hover {
+            border: 1px solid var(--secondary-color-hover);
+            color: var(--secondary-color-hover);
+        }
+    }
+
+    .nav {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        justify-content: flex-end;
+
+        a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            transition: color 0.3s, box-shadow 0.3s;
+
+            &:hover {
+                color: var(--secondary-color-hover);
+            }
+        }
+    }
+}
+
+@media (max-width: 1180px) {
+    .header {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 508px) {
+    .header .buttonContainer {
+        flex-direction: column;
+        gap: 5px !important;
+    }
+}
+
+@media (max-width: 360px) {
+    .header .nav {
+        display: none;
+    }
+
+    .logo {
+        grid-column: 4;
+    }
+
+    .drawerContainer {
+        min-width: 200px;
+
+        .drawerContent {
+            background-color: var(--background-drawer);
+            min-width: 200px;
+            padding-bottom: 10px;
+            padding-top: 0;
+        }
+
+        .drawerItem {
+            color: var(--foreground-color);
+            text-align: center;
+
+            &:hover {
+                color: var(--tertiary-color);
+            }
+        }
+    }
+
+}

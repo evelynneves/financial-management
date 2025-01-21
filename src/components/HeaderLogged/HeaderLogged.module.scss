@@ -1,0 +1,61 @@
+/******************************************************************************
+*                                                                             *
+* Creation Date : 23/12/2024                                                  *
+*                                                                             *
+* Property : (c) This program, code or item is the Intellectual Property of   *
+* Evelyn Neves Barreto. Any use or copy of this code is prohibited without    *
+* the express written authorization of Evelyn. All rights reserved.           *
+*                                                                             *
+*******************************************************************************/
+
+.toolbar {
+    display: flex;
+    justify-content: flex-end;
+    background-color: var(--primary-color);
+    width: 100%;
+    padding: 0 40px;
+    align-items: center;
+}
+
+.rightAligned {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatarImg {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.menu {
+    ul {
+        background-color: var(--foreground-color);
+        color: var(--white-color);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        li:hover {
+            color: var(--secondary-color);
+        }
+    }   
+}
+
+@media (max-width: 720px) {
+    .toolbar {
+        padding: 0 40px;
+    }
+}
+
+@media (max-width: 360px) {
+    .toolbar {
+        padding: 0 20px;
+        justify-content: space-between;
+    }
+
+    .userName {
+        display: none;
+    }
+}

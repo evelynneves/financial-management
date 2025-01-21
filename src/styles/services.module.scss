@@ -1,0 +1,187 @@
+/******************************************************************************
+*                                                                             *
+* Creation Date : 23/12/2024                                                  *
+*                                                                             *
+* Property : (c) This program, code or item is the Intellectual Property of   *
+* Evelyn Neves Barreto. Any use or copy of this code is prohibited without    *
+* the express written authorization of Evelyn. All rights reserved.           *
+*                                                                             *
+*******************************************************************************/
+
+.container {
+    width: 100%;
+    min-height: calc(100vh - 64px);
+    padding: 50px;
+    background-color: var(--background-drawer);
+}
+
+.gridContainer {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    gap: 20px;
+}
+
+.mainContent {
+    display: grid;
+    grid-template-rows: auto auto;
+    justify-content: center;
+    gap: 20px;
+    border-radius: var(--border-radius-medium);
+}
+
+.leftSideBar {
+    display: contents;
+}
+
+.topSection {
+    width: 690px;
+    height: 400px;
+    background-color: var(--primary-color);
+    padding: 30px;
+    border-radius: var(--border-radius-medium);
+    color: var(--white-color);
+    display: grid;
+    grid-template-rows: auto auto 1fr;
+    grid-template-columns: 1fr 1fr;
+
+    .topSectionRow1 {
+        grid-column: span 2;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    
+    .topSectionRow2 {
+        display: flex;
+        flex-direction: column;
+        grid-column: 2;
+        align-items: flex-start;
+        width: fit-content;
+    }
+    
+    .topSectionRow3 {
+        grid-column: span 2;
+    }
+}
+
+.bottomSection {
+    width: 690px;
+    min-height: 478px;
+    padding: 30px;
+    background-color: var(--light-gray-color);
+    border-radius: var(--border-radius-medium);
+}
+
+.greeting {
+    margin-bottom: 8px;
+}
+
+.balanceContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 4px;
+}
+
+.balanceLabel {
+    margin-right: 8px;
+}
+
+.visibleIcon {
+    color: var(--tertiary-color);
+}
+
+.underline {
+    width: 100%;
+    height: 2px;
+    background-color: var(--tertiary-color);
+    margin-bottom: 8px;
+    align-self: flex-end;
+}
+
+.accountType {
+    font-size: 1rem;
+    margin-bottom: 8px;
+    text-align: right;
+}
+
+.balanceAmount {
+    font-size: 30px;
+    font-weight: var(--font-weight-bold);
+    text-align: right;
+}
+
+.listItemContainer {
+    display: none;
+}
+
+@media (max-width: 720px) {
+    .container {
+        padding: 40px;
+    }
+
+    .gridContainer {
+        grid-template-columns: 1fr;
+    }
+
+    .topSection {
+        width: 100%;
+        height: auto;
+    }
+
+    .bottomSection {
+        width: 100%;
+        min-width: 620px; 
+    }
+
+
+    .listItemContainer {
+        display: flex;
+    }
+
+    .sidebar {
+        width: 100%;
+        margin-top: 16px;
+    }
+
+    .leftSideBar {
+        display: none;
+    }
+}
+
+@media (max-width: 360px) {
+    .container {
+        padding: 20px;
+    }
+
+    .gridContainer {
+        grid-template-columns: 1fr;
+    }
+
+    .listItemContainer {
+        display: none;
+    }
+
+    .topSection {
+        display: flex;
+        flex-direction: column;
+        padding: 40px 60px;
+        gap: 20px;
+
+        .topSectionRow1 {
+            display: flex;
+            align-items: center;
+        }
+        
+        .topSectionRow2 {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 100%;
+        }
+    }
+
+    .bottomSection {
+        min-width: 100px;
+    }
+}

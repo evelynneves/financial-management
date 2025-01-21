@@ -1,0 +1,62 @@
+/******************************************************************************
+*                                                                             *
+* Creation Date : 23/12/2024                                                  *
+*                                                                             *
+* Property : (c) This program, code or item is the Intellectual Property of   *
+* Evelyn Neves Barreto. Any use or copy of this code is prohibited without    *
+* the express written authorization of Evelyn. All rights reserved.           *
+*                                                                             *
+*******************************************************************************/
+
+:root {
+    --primary-color: #004d61;
+    --primary-color-hover: #003c4f;
+    --secondary-color: #47a138;
+    --secondary-color-hover: #3d8f32;
+    --light-green-color: #9dca96;
+    --tertiary-color: #ff5031;
+    --tertiary-color-hover: #e94b2e;
+    --background-color: #f5f5f5;
+    --foreground-color: #000000;
+    --primary-error-color: #f44336;
+    --error-color: #e57471;
+    --light-error-color: #c56f6f;
+    --white-color: #ffffff;
+    --slate-gray-color: #767676;
+    --mist-gray-color: #f2f2f2;
+    --very-light-gray-color: #e0e0e0;
+    --lighter-gray-color: #dadada;
+    --light-gray-color: #cbcbcb;
+    --medium-gray-color: #444444;
+    --dark-gray-color: #8b8b8b;
+    --blue-color: #2567f9;
+    --purple-color: #8f3cff;
+    --pink-color: #ff3c82;
+    --orange-color: #f1823d;
+    --background-drawer: #e4ede3;
+    --accent-color: #2f2e41;
+
+    --font-family-primary: "Montserrat", sans-serif;
+    --font-family-secondary: "Arial", Helvetica, sans-serif;
+
+    --font-size-title: 25px;
+    --font-size-subtitle: 20px;
+    --font-size-body: 16px;
+    --font-size-caption: 12px;
+
+    --font-weight-bold: 700;
+    --font-weight-medium: 500;
+    --font-weight-regular: 400;
+
+    --border-radius-small: 6px;
+    --border-radius-medium: 8px;
+    --border-radius-large: 10px;
+
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 20px;
+    --spacing-xl: 30px;
+    --spacing-xxl: 40px;
+    --spacing-xxxl: 50px;
+}

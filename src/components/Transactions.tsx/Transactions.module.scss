@@ -1,0 +1,30 @@
+/******************************************************************************
+*                                                                             *
+* Creation Date : 23/12/2024                                                  *
+*                                                                             *
+* Property : (c) This program, code or item is the Intellectual Property of   *
+* Evelyn Neves Barreto. Any use or copy of this code is prohibited without    *
+* the express written authorization of Evelyn. All rights reserved.           *
+*                                                                             *
+*******************************************************************************/
+
+.transactionsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    .title {
+        font-size: var(--font-size-title);
+        font-weight: var(--font-weight-bold);
+        color: var(--foreground-color);
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 360px) {
+    .transactionsContainer {
+        .title {
+            text-align: center;
+        }
+    }
+}

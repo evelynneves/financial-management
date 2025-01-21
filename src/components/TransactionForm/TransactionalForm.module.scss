@@ -1,0 +1,83 @@
+/******************************************************************************
+*                                                                             *
+* Creation Date : 23/12/2024                                                  *
+*                                                                             *
+* Property : (c) This program, code or item is the Intellectual Property of   *
+* Evelyn Neves Barreto. Any use or copy of this code is prohibited without    *
+* the express written authorization of Evelyn. All rights reserved.           *
+*                                                                             *
+*******************************************************************************/
+
+.transactionalFormContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    
+    .inputWrapper {
+        position: relative;
+        margin-bottom: 16px;
+    }
+    
+    .customLabel {
+        position: absolute;
+        top: -10px;
+        left: 0;
+        padding: 0 5px;
+        color: var(--medium-gray-color);
+        font-size: var(--font-size-body);
+        font-weight: var(--font-weight-medium);
+    }
+    
+    .dropdown {
+        width: 355px;
+    }
+    
+    .input {
+        width: 250px;
+        margin-bottom: 0;
+    }
+    
+    .errorMessage {
+        color: var(--error-color);
+        font-size: 14px;
+        font-weight: var(--font-weight-bold);
+        text-align: end;
+    }
+    
+    .customInput .MuiOutlinedInput-root {
+        background-color: var(--white-color);
+        color: var(--medium-gray-color);
+    }
+    
+    .customInput .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline,
+    .customInput .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+        border-color: var(--primary-color) !important;
+    }
+    
+    .submitButton {
+        width: 250px;
+        height: 48px;
+        background-color: var(--primary-color);
+        border-radius: var(--border-radius-medium);
+        font-size: var(--font-size-body);
+        font-weight: var(--font-weight-regular);
+        text-transform: none;
+    
+        &:hover {
+            background-color: var(--primary-color-hover);
+        }
+    }
+}
+
+
+@media (max-width: 360px) {
+    .transactionalFormContainer {
+        .dropdown {
+            width: 100%;
+        }
+
+        .title {
+            text-align: center;
+        }
+    }
+}
