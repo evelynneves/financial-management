@@ -1,10 +1,10 @@
 import React, { ChangeEvent } from "react";
 import { Checkbox, FormControlLabel, TextField } from "@mui/material";
-import GenericModal from "./GenericModal";
-import { IHomeModalProps } from "../interfaces/components";
-import useForm from "../hooks/useForm";
 import { useRouter } from "next/router";
-import { useAuth } from "../contexts/AuthContext";
+import { IHomeModalProps } from "@/src/interfaces/components";
+import useForm from "@/src/hooks/useForm";
+import { useAuth } from "@/src/contexts/AuthContext";
+import GenericModal from "../GenericModal/GenericModal";
 
 const CreateAccountModal: React.FC<IHomeModalProps> = ({
     open,

@@ -3,8 +3,8 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 import styles from "../styles/Home.module.scss";
-import CreateAccountModal from "@/src/components/CreateAccountModal";
-import LoginModal from "@/src/components/LoginModal";
+import LoginModal from "@/src/components/LoginModal/LoginModal";
+import CreateAccountModal from "../components/CreateAccountModal/CreateAccountModal";
 
 const HomePage: React.FC = () => {
     const [createAccountModalOpen, setCreateAccountModalOpen] = useState(false);

@@ -3,14 +3,10 @@ import { Box, SelectChangeEvent, Typography } from '@mui/material';
 import styles from './Transactions.module.scss';
 import { formatCurrency } from '@/src/utils/formatCurrency';
 import { IUserData } from '@/src/interfaces/auth';
-import { ITransactionItemProps } from '@/src/interfaces/components';
+import { ITransactionItemProps, ITransactionsProps } from '@/src/interfaces/components';
 import TransactionalForm from '../TransactionForm/TransactionalForm';
 
-interface TransactionsProps {
-    onTransactionComplete: (transaction: ITransactionItemProps) => void;
-}
-
-const Transactions: React.FC<TransactionsProps> = ({ onTransactionComplete }) => {
+const Transactions: React.FC<ITransactionsProps> = ({ onTransactionComplete }) => {
     const [transactionType, setTransactionType] = useState<string>('deposito');
     const [amount, setAmount] = useState<string>('');
     const [isValidAmount, setIsValidAmount] = useState<boolean>(true);

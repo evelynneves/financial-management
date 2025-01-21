@@ -1,14 +1,9 @@
 import React from "react";
 import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Button } from "@mui/material";
-import styles from "./ConfirmatinModal.module.scss";
+import styles from "./ConfirmationModal.module.scss";
+import { IConfirmationModalProps } from "@/src/interfaces/components";
 
-interface ConfirmationModalProps {
-    open: boolean;
-    onClose: () => void;
-    onConfirm: () => void;
-}
-
-const ConfirmationModal: React.FC<ConfirmationModalProps> = ({ open, onClose, onConfirm }) => {
+const ConfirmationModal: React.FC<IConfirmationModalProps> = ({ open, onClose, onConfirm }) => {
     return (
         <Dialog open={open} onClose={onClose} className={styles.dialogContainer}>
             <DialogTitle className={styles.dialogTitle}>Confirmar Remoção</DialogTitle>

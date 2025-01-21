@@ -7,7 +7,7 @@ import styles from './TransactionalItem.module.scss';
 import { ITransactionItemWithActionsProps } from "@/src/interfaces/components";
 import { formatDateWithoutWeekday } from '@/src/utils/formatDate';
 import { getLoggedInUser } from "@/src/utils/getLoggedUser";
-import ConfirmationModal from "../ConfirmationModal/ConfirmatinModa";
+import ConfirmationModal from "../ConfirmationModal/ConfirmationModal";
 import EditTransactionModal from "../EditTransactionalModal/EditTransactionalModal";
 import TransactionDetailsModal from "../TransactionalDetailsModal/TransactionalDetailsModal";
 

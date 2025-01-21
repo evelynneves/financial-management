@@ -5,8 +5,8 @@ import Image from 'next/image';
 import { useState } from "react";
 
 import styles from './Header.module.scss';
-import CreateAccountModal from "../CreateAccountModal";
-import LoginModal from "../LoginModal";
+import LoginModal from "../LoginModal/LoginModal";
+import CreateAccountModal from "../CreateAccountModal/CreateAccountModal";
 
 const Header: React.FC = () => {
   const isMediumScreen = useMediaQuery('(min-width: 361px) and (max-width: 719px)');

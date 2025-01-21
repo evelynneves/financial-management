@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { TextField, Link } from "@mui/material";
-import GenericModal from "./GenericModal";
-import { IHomeModalProps } from "../interfaces/components";
-import useForm from "../hooks/useForm";
+import { IHomeModalProps } from "../../interfaces/components";
+import useForm from "../../hooks/useForm";
 import { useRouter } from "next/router";
-import { useAuth } from "../contexts/AuthContext";
-import { IFormData } from "../interfaces/forms";
+import { useAuth } from "../../contexts/AuthContext";
+import { IFormData } from "../../interfaces/forms";
+import GenericModal from "../GenericModal/GenericModal";
 
 const LoginModal: React.FC<IHomeModalProps> = ({ open, handleClose }) => {
     const { formData, handleChange, isFormValid, emailError } = useForm(

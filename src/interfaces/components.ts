@@ -1,6 +1,12 @@
 import { SelectChangeEvent } from "@mui/material";
 import { ChangeEvent, ReactNode } from "react";
 
+export interface ICardProps {
+    name: string;
+    type: string;
+    cardFunction: string;
+}
+
 export interface IGenericModalProps {
     open: boolean;
     handleClose: () => void;
@@ -81,4 +87,14 @@ export interface ITransactionDetailsModalProps {
 
 export interface IServicesAvailableProps {
     onCardClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
+}
+
+export interface IConfirmationModalProps {
+    open: boolean;
+    onClose: () => void;
+    onConfirm: () => void;
+}
+
+export interface ITransactionsProps {
+    onTransactionComplete: (transaction: ITransactionItemProps) => void;
 }

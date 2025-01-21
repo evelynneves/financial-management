@@ -2,7 +2,7 @@ import React from "react";
 import { Modal, Box, Typography, Button, IconButton } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import Image from "next/image";
-import { IGenericModalProps } from "../interfaces/components";
+import { IGenericModalProps } from "@/src/interfaces/components";
 
 const GenericModal: React.FC<IGenericModalProps> = ({
     open,
