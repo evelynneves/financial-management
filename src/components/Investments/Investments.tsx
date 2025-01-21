@@ -1,9 +1,20 @@
+/******************************************************************************
+*                                                                             *
+* Creation Date : 23/12/2024                                                  *
+*                                                                             *
+* Property : (c) This program, code or item is the Intellectual Property of   *
+* Evelyn Neves Barreto. Any use or copy of this code is prohibited without    *
+* the express written authorization of Evelyn. All rights reserved.           *
+*                                                                             *
+*******************************************************************************/
+
 import React from "react";
 import { Typography, Box } from "@mui/material";
-import styles from "./Investments.module.scss";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { Doughnut } from "react-chartjs-2";
 import 'chartjs-plugin-datalabels';
+
+import styles from "./Investments.module.scss";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 

@@ -1,5 +1,16 @@
+/******************************************************************************
+*                                                                             *
+* Creation Date : 23/12/2024                                                  *
+*                                                                             *
+* Property : (c) This program, code or item is the Intellectual Property of   *
+* Evelyn Neves Barreto. Any use or copy of this code is prohibited without    *
+* the express written authorization of Evelyn. All rights reserved.           *
+*                                                                             *
+*******************************************************************************/
+
 import React, { useEffect, useState } from "react";
 import { Typography, Box } from "@mui/material";
+
 import styles from "./Transfers.module.scss";
 import { ITransactionItemProps } from "../../interfaces/components";
 import TransactionItem from "../TransactionalItem/TransactionalItem";
@@ -11,7 +22,6 @@ const Transfers = () => {
     );
 
     useEffect(() => {
-        // Simular fetch das transferências armazenadas
         if (typeof window !== "undefined") {
             const storedUserData = sessionStorage.getItem("userData");
             if (storedUserData) {

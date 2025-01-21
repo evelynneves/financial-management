@@ -1,5 +1,16 @@
+/******************************************************************************
+*                                                                             *
+* Creation Date : 23/12/2024                                                  *
+*                                                                             *
+* Property : (c) This program, code or item is the Intellectual Property of   *
+* Evelyn Neves Barreto. Any use or copy of this code is prohibited without    *
+* the express written authorization of Evelyn. All rights reserved.           *
+*                                                                             *
+*******************************************************************************/
+
 import React, { ChangeEvent, useState } from 'react';
 import { Box, SelectChangeEvent, Typography } from '@mui/material';
+
 import styles from './Transactions.module.scss';
 import { formatCurrency } from '@/src/utils/formatCurrency';
 import { IUserData } from '@/src/interfaces/auth';

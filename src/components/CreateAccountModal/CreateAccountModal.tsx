@@ -1,6 +1,17 @@
+/******************************************************************************
+*                                                                             *
+* Creation Date : 23/12/2024                                                  *
+*                                                                             *
+* Property : (c) This program, code or item is the Intellectual Property of   *
+* Evelyn Neves Barreto. Any use or copy of this code is prohibited without    *
+* the express written authorization of Evelyn. All rights reserved.           *
+*                                                                             *
+*******************************************************************************/
+
 import React, { ChangeEvent } from "react";
 import { Checkbox, FormControlLabel, TextField } from "@mui/material";
 import { useRouter } from "next/router";
+
 import { IHomeModalProps } from "@/src/interfaces/components";
 import useForm from "@/src/hooks/useForm";
 import { useAuth } from "@/src/contexts/AuthContext";

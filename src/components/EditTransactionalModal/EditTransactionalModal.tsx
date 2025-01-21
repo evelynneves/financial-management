@@ -1,6 +1,17 @@
+/******************************************************************************
+*                                                                             *
+* Creation Date : 23/12/2024                                                  *
+*                                                                             *
+* Property : (c) This program, code or item is the Intellectual Property of   *
+* Evelyn Neves Barreto. Any use or copy of this code is prohibited without    *
+* the express written authorization of Evelyn. All rights reserved.           *
+*                                                                             *
+*******************************************************************************/
+
 import React, { useState, useEffect, ChangeEvent } from 'react';
 import { Dialog, DialogTitle, DialogContent, DialogActions, Button } from '@mui/material';
 import { SelectChangeEvent } from '@mui/material/Select';
+
 import { IEditTransactionModalProps } from '@/src/interfaces/components';
 import { formatCurrency } from '@/src/utils/formatCurrency';
 import TransactionalForm from '../TransactionForm/TransactionalForm';

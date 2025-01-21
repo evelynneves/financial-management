@@ -1,3 +1,13 @@
+/******************************************************************************
+*                                                                             *
+* Creation Date : 23/12/2024                                                  *
+*                                                                             *
+* Property : (c) This program, code or item is the Intellectual Property of   *
+* Evelyn Neves Barreto. Any use or copy of this code is prohibited without    *
+* the express written authorization of Evelyn. All rights reserved.           *
+*                                                                             *
+*******************************************************************************/
+
 import React, { useState, useEffect } from "react";
 import {
     AppBar,
@@ -12,11 +22,12 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+import { useRouter } from "next/router";
+
 import styles from "./HeaderLogged.module.scss";
 import MenuList from "../../components/MenuList/MenuList";
 import { useMenu } from "../../contexts/MenuContext";
 import { useAuth } from "../../contexts/AuthContext";
-import { useRouter } from "next/router";
 import { getLoggedInUser } from "@/src/utils/getLoggedUser";
 
 const HeaderLogged: React.FC = () => {
