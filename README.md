@@ -4,6 +4,17 @@
 
 **Financial Management** é uma aplicação web desenvolvida como parte de um desafio técnico para consolidar os conhecimentos adquiridos durante a fase de estudos. O objetivo principal é criar uma interface de gerenciamento financeiro que permita aos usuários acompanhar e organizar suas transações financeiras de forma intuitiva e eficiente.
 
+
+## Tecnologias Utilizadas
+
+Este projeto foi desenvolvido utilizando as seguintes tecnologias e ferramentas:
+
+- **Next.js**: Framework React para renderização híbrida (SSR e SSG) e funcionalidades avançadas de rotas.  
+- **TypeScript**: Superset do JavaScript que adiciona tipagem estática, aumentando a segurança e legibilidade do código.  
+- **Material-UI (MUI)**: Biblioteca de componentes React para criar interfaces de usuário modernas e responsivas.  
+- **Storybook**: Ferramenta para desenvolvimento isolado de componentes e documentação de design system.  
+- **CSS com Flexbox e Grid**: Técnicas utilizadas para criar layouts flexíveis, responsivos e estruturados.  
+
 ## Funcionalidades
 
 1. **Home Page**  
@@ -27,7 +38,7 @@
 5. **Detalhar transação**  
    - Modal com os dados da transação selecionada. Os dados são: tipo, valor, data e autor.
 
-## Setup Instructions
+## Instruções de configuração
 
 1. Clone o repositório:  
    ```bash
@@ -42,6 +53,9 @@
    npm start
 
 4. Acesse a aplicação no navegador em http://localhost:3000
+
+## Link para o vídeo de apresentação da aplicação
+   - https://youtu.be/eZloP0KJZbc
 
 ## Usuário Pré-Criado  
 

@@ -140,7 +140,7 @@ const LoginModal: React.FC<IHomeModalProps> = ({ open, handleClose }) => {
                 error={!!errorMessage}
                 helperText={errorMessage}
             />
-            <Link href="#" variant="body2" sx={{ display: "block", textAlign: "right", mt: 1, color: "#47A138" }}>
+            <Link href="#" variant="body2" sx={{ display: "block", textAlign: "right", mt: 1, color: "#47A138", textDecorationColor: "#47A138", }}>
                 Esqueci a senha!
             </Link>
         </GenericModal>

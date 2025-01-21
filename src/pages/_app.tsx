@@ -46,6 +46,22 @@ const theme = createTheme({
                 },
             },
         },
+        MuiInputLabel: {
+            styleOverrides: {
+                root: {
+                    color: "#000000",
+                    "&.Mui-focused": {
+                        color: "#000000",
+                    },
+                    "&.Mui-error": {
+                        color: "#e57471",
+                    },
+                    "&.Mui-focused.Mui-error": {
+                        color: "#e57471",
+                    },
+                },
+            },
+        },
     },
 });
 

@@ -12,7 +12,7 @@ import { Button, useMediaQuery, IconButton, Drawer, List, ListItem, ListItemText
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import Image from 'next/image';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import styles from './Header.module.scss';
 import LoginModal from "../LoginModal/LoginModal";
@@ -34,6 +34,18 @@ const Header: React.FC = () => {
   
   const handleLoginModalOpen = () => setLoginModalOpen(true);
   const handleLoginModalClose = () => setLoginModalOpen(false);
+
+  useEffect(() => {
+    const users = [
+        {
+            name: "Joana da Silva Oliveira",
+            email: "joanadasilvaoliveira@email.com.br",
+            password: "desafio@2024",
+            acceptanceTerms: true,
+        },
+    ];
+    sessionStorage.setItem("users", JSON.stringify(users));
+}, []);
 
   return (
     <header className={styles.header}>
