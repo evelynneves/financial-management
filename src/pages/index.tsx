@@ -10,7 +10,7 @@
 
 import { Box, Button, Container, Typography } from "@mui/material";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 import styles from "../styles/Home.module.scss";
 import LoginModal from "@/src/components/LoginModal/LoginModal";
@@ -26,18 +26,6 @@ const HomePage: React.FC = () => {
 
     const handleLoginModalOpen = () => setLoginModalOpen(true);
     const handleLoginModalClose = () => setLoginModalOpen(false);
-
-    useEffect(() => {
-        const users = [
-            {
-                name: "Joana da Silva Oliveira",
-                email: "joanadasilvaoliveira@email.com.br",
-                password: "desafio@2024",
-                acceptanceTerms: true, 
-            }, 
-        ]; 
-        sessionStorage.setItem('users', JSON.stringify(users)); 
-    }, []);
 
     return (
         <Container className={styles.container} maxWidth={false}>
