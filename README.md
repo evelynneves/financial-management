@@ -38,7 +38,7 @@ Este projeto foi desenvolvido utilizando as seguintes tecnologias e ferramentas:
 5. **Detalhar transação**  
    - Modal com os dados da transação selecionada. Os dados são: tipo, valor, data e autor.
 
-## Setup Instructions
+## Instruções de configuração
 
 1. Clone o repositório:  
    ```bash
